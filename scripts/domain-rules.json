@@ -1,0 +1,32 @@
+{
+  "publicFiles": ["index.html", "i18n.js", "README.md", "404.html"],
+  "requiredFiles": [
+    "CONTEXT.md",
+    "index.html",
+    "i18n.js",
+    "scripts/check-i18n.mjs",
+    "scripts/domain-rules.json"
+  ],
+  "forbidden": [
+    {
+      "id": "acc",
+      "pattern": "\\bACC\\b",
+      "message": "forbidden employer abbreviation ACC"
+    },
+    {
+      "id": "interview-lead",
+      "pattern": "Interview\\s*/\\s*Lead",
+      "flags": "i",
+      "message": "Interview/Lead is not a product on this URL"
+    }
+  ],
+  "indexHtml": {
+    "sectionOrder": ["cv", "mentoria"],
+    "lang": "en",
+    "mustContain": [
+      "4J095ZM",
+      "https://www.angulartraining.com/certification/check.html",
+      "https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/"
+    ]
+  }
+}

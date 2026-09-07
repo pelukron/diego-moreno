@@ -1,6 +1,24 @@
 # Public presence
 
-Diego Moreno Arellano’s public professional presence (this site). Hiring owns the URL. Angular Senior Track is a real product on the same site, secondary. The public noun is Angular Expert (L3). The target employment role is Senior Frontend. Default public language is English.
+Diego Moreno Arellano’s public professional presence (this site). Hiring owns the URL. Angular Senior Track is a real product on the same site, secondary. The public noun is Angular Expert (L3). The target employment role is Senior Frontend. Default public language is English. Implementation quality is a Gate on the pull request, not an agent.
+
+## Quality
+
+**Gate**:
+A deterministic check that can fail a pull request: i18n keys and domain lint on the public site files. No Biome, no LLM review, no npm dependencies.
+_Avoid_: agent-as-CI, pre-commit hooks as the only control, formatter-as-quality
+
+**Claim**:
+A public fact a script cannot verify (C1 vs LinkedIn, L3 still live, portrait is a real photo). Claims fail in the world, not in Actions.
+_Avoid_: putting Claims in the Gate, “the pipeline says the CV is true”
+
+**Pipe**:
+GitHub Actions on `pull_request` running `node scripts/gate.mjs`. The same command is the local Gate. Branch names include the GitHub issue number (`kind/<issue>-slug`).
+_Avoid_: Husky as the source of truth, pushing to `master`, branches without a ticket number
+
+**Artifact**:
+A checked-in, re-runnable rule or script. Tomorrow’s human trusts Artifacts, not the chat that produced them. When a rule can fail a PR, it lives as data or a script, not as advice.
+_Avoid_: agent-as-memory, quality that exists only in a session log
 
 ## Language
 
