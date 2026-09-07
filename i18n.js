@@ -1,0 +1,202 @@
+// Chrome, nav, mentoring, and contact are bilingual.
+// CV body (summaries, bullets, employer lines) stays English for recruiters.
+const T = {
+  es: {
+    "doc.title": "Diego Moreno — Angular Expert L3 · Senior Frontend",
+    "doc.desc": "Senior Frontend. Angular Expert L3. CV público y mentoría mid→senior. Monterrey / remote US.",
+    "nav.mentor": "Mentoría",
+    "nav.cv": "CV",
+    "nav.contact": "Contacto",
+    "hero.kicker": "Senior Frontend · Angular Expert L3 · TypeScript / Node",
+    "hero.title": "Subo de nivel plataformas Angular enterprise. Mentoreo al mid que ya entrega y se atasca en lo que un lead sí mira.",
+    "hero.lede": "10+ años. Certificación Angular Level 3 (4J095ZM). Signals, Nx, micro-frontends, TDD, gate de merge request. Monterrey. Remote LATAM / US nearshore. Inglés C1.",
+    "hero.ctaHire": "Ver CV",
+    "hero.ctaMentor": "Angular Senior Track",
+    "m.label": "Mentoría",
+    "m.title": "Angular Senior Track",
+    "m.intro": "No es un curso de Angular. Es 4 h/mes sobre tu repo: Signals vs RxJS, Nx, MFE, tests que importan y calidad de MR. Cap 3 mentees.",
+    "a.k": "Puerta de entrada",
+    "a.meta": "· 75 min",
+    "a.1": "Review en vivo de 1 PR o 1 módulo",
+    "a.2": "Plan de 1 página: 3 gaps, 3 ejercicios, siguiente paso",
+    "a.3": "Si no hay fit, ahí queda",
+    "a.cta": "Pedir Diagnostic por LinkedIn",
+    "b.k": "Producto core",
+    "b.meta": "· 4 h / mes",
+    "b.plus": "Track+ 6 h · 680 USD",
+    "b.1": "2 sesiones de 60 min (3 en Track+)",
+    "b.2": "Async cap 4 mensajes/semana · 24–48 h",
+    "b.3": "1 review de PR o diseño por sesión",
+    "b.4": "Entregable mensual de 1 página",
+    "b.cta": "Pedir por LinkedIn",
+    "c.k": "Cerrado · 2 semanas",
+    "c.meta": "· 4 sesiones",
+    "c.1": "System design frontend (MFE, auth, flags)",
+    "c.2": "Live coding Signals + tests",
+    "c.3": "CV + 3 stories STAR reales",
+    "c.4": "Mock 45 min + rúbrica",
+    "c.cta": "Pedir por LinkedIn",
+    "fit.yesT": "Para quién sí",
+    "fit.noT": "Para quién no",
+    "fit.y1": "Mid 3–7 años que ya entrega features",
+    "fit.y2": "Lead que necesita 4 h/mes de second pair of eyes en Nx/MFE",
+    "fit.y3": "Repo real (o recorte anónimo si hay NDA)",
+    "fit.n1": "Cero a héroes / “explícame *ngFor*”",
+    "fit.n2": "“Hazme el PR / el sprint”",
+    "fit.n3": "Garantía de empleo o de salario",
+    "track.h": "Bloques (elige 1 por mes)",
+    "t.1": "Done: un servicio hot-path sin subscription soup.",
+    "t.2": "Done: store con entidades + side effects testeable.",
+    "t.3": "Done: public API, no barrel caótico.",
+    "t.4": "Done: contrato versionado + owner de breaking change.",
+    "t.5": "Done: tests que fallan si rompes el negocio.",
+    "t.6": "Done: template de review que un lead US firmaría.",
+    "m.fine": "Pago adelantado. Extra 130 USD/h. Cancelación 7 días antes. Horas no usadas no se reembolsan. Implementar features del trabajo es freelance (70–90 USD/h), no mentoría.",
+    "cv.label": "CV",
+    "cv.title": "Diego Moreno Arellano",
+    "cv.intro": "Senior Frontend Engineer. Angular Expert (Level 3). TypeScript, Signals, RxJS, Nx, micro-frontends, Node 20+. Available. Remote LATAM / US nearshore.",
+    "cv.sum": "Resumen",
+    "cv.p1": "Upgrade and stabilize enterprise Angular platforms: version migrations on a 6-month cadence, shared UI libraries, AG Grid, Material. Business modules with TDD, E2E, and merge-request quality gates. React/Next.js in active use.",
+    "cv.p2": "Agentic delivery, not vibe-coding. Anthropic AI Fluency. AI-pod: written plans, spec-driven development, memory bank, deterministic workflows, subagents implement / test / review. MCP + Cline/Cursor execute; human gate on architecture and merges.",
+    "cv.exp": "Experiencia",
+    "cv.omit": "Enterprise delivery. Client names omitted.",
+    "g1": "Led Angular Signals adoption in a micro-frontend insurance platform (quoting, policy, endorsements).",
+    "g2": "TDD + strict MR review bar before integration.",
+    "g3": "Delivery as an AI-pod: plans, SDD, memory bank, subagents. Human merge gate.",
+    "g4": "Product-configuration modules; stable FE/BE contracts across services.",
+    "g5": "Nx monorepo: Angular 9+ → current line, Node 16+ → 20+, ~6-month cadence.",
+    "g6": "Transversal UI libraries (Material wrapper, AG Grid 27+, shared components).",
+    "g7": "Unit + E2E (TestCafe). Jenkins, Grafana, qTest. Rancher. GitLab / GitHub. SAFe.",
+    "acc1": "Hardening-team lead: admin modules, RxJS, async flows, file upload.",
+    "acc2": "Angular 9: Material, Flex Layout, Sass, lazy loading, shared components.",
+    "acc3": "Collaboration on Spring Boot 2 / Java 12 microservices.",
+    "ind.h": "Independent",
+    "ind.1": "React / Next.js performance and architecture (TypeScript).",
+    "ind.2": "AI-pod workflow formalized (Anthropic 4D).",
+    "cv.cert": "Certificaciones",
+    "cv.certNote": "Credential valid through Oct 2026.",
+    "cv.edu": "Formación",
+    "co.label": "Contacto",
+    "co.title": "Hiring o mentoría",
+    "co.intro": "Full-time / contractor: Senior Frontend, Frontend Lead, Full-stack TypeScript. Mentoría: empieza por el Diagnostic. Un mensaje en LinkedIn basta — indica cuál de los dos."
+  },
+  en: {
+    "doc.title": "Diego Moreno — Angular Expert L3 · Senior Frontend",
+    "doc.desc": "Senior Frontend Engineer. Angular Expert L3. Public resume and mid-to-senior mentoring. Monterrey / remote US.",
+    "nav.mentor": "Mentoring",
+    "nav.cv": "Resume",
+    "nav.contact": "Contact",
+    "hero.kicker": "Senior Frontend · Angular Expert L3 · TypeScript / Node",
+    "hero.title": "I upgrade enterprise Angular platforms. I mentor mids who already ship and stall on what a lead actually reviews.",
+    "hero.lede": "10+ years. Angular Level 3 (4J095ZM). Signals, Nx, micro-frontends, TDD, merge-request gate. Monterrey. Remote LATAM / US nearshore. English C1.",
+    "hero.ctaHire": "See resume",
+    "hero.ctaMentor": "Angular Senior Track",
+    "m.label": "Mentoring",
+    "m.title": "Angular Senior Track",
+    "m.intro": "Not an Angular course. Four hours a month on your repo: Signals vs RxJS, Nx, MFEs, tests that matter, MR quality. Cap: 3 mentees.",
+    "a.k": "Entry",
+    "a.meta": "· 75 min",
+    "a.1": "Live review of 1 PR or 1 module",
+    "a.2": "One-pager: 3 gaps, 3 drills, next step",
+    "a.3": "No fit? We stop there",
+    "a.cta": "Request a Diagnostic on LinkedIn",
+    "b.k": "Core",
+    "b.meta": "· 4 h / month",
+    "b.plus": "Track+ 6 h · 680 USD",
+    "b.1": "2×60 min sessions (3 on Track+)",
+    "b.2": "Async cap 4 messages/week · 24–48 h",
+    "b.3": "One PR or design review per session",
+    "b.4": "One-page monthly write-up",
+    "b.cta": "Request on LinkedIn",
+    "c.k": "Closed · 2 weeks",
+    "c.meta": "· 4 sessions",
+    "c.1": "Frontend system design (MFE, auth, flags)",
+    "c.2": "Live coding Signals + tests",
+    "c.3": "Resume + 3 real STAR stories",
+    "c.4": "45-min mock + rubric",
+    "c.cta": "Request on LinkedIn",
+    "fit.yesT": "Yes if",
+    "fit.noT": "No if",
+    "fit.y1": "Mid, 3–7 years, already shipping features",
+    "fit.y2": "A lead who wants 4 h/month of extra eyes on Nx/MFE",
+    "fit.y3": "A real repo (or an anonymized slice under NDA)",
+    "fit.n1": "Zero-to-hero / “explain *ngFor*”",
+    "fit.n2": "“Do the PR / the sprint for me”",
+    "fit.n3": "You want a job or salary guarantee",
+    "track.h": "Blocks (pick one per month)",
+    "t.1": "Done: one hot-path service without subscription soup.",
+    "t.2": "Done: entity store + testable side effects.",
+    "t.3": "Done: a real public API, not a junk barrel.",
+    "t.4": "Done: versioned contract + breaking-change owner.",
+    "t.5": "Done: tests that fail when the business breaks.",
+    "t.6": "Done: a review template a US lead would sign.",
+    "m.fine": "Paid up front. Extra 130 USD/h. Cancel 7 days ahead. Unused hours are not refunded. Implementing your sprint is freelance (70–90 USD/h), not mentoring.",
+    "cv.label": "Resume",
+    "cv.title": "Diego Moreno Arellano",
+    "cv.intro": "Senior Frontend Engineer. Angular Expert (Level 3). TypeScript, Signals, RxJS, Nx, micro-frontends, Node 20+. Available. Remote LATAM / US nearshore.",
+    "cv.sum": "Summary",
+    "cv.p1": "Upgrade and stabilize enterprise Angular platforms: version migrations on a 6-month cadence, shared UI libraries, AG Grid, Material. Business modules with TDD, E2E, and merge-request quality gates. React/Next.js in active use.",
+    "cv.p2": "Agentic delivery, not vibe-coding. Anthropic AI Fluency. AI-pod: written plans, spec-driven development, memory bank, deterministic workflows, subagents implement / test / review. MCP + Cline/Cursor execute; human gate on architecture and merges.",
+    "cv.exp": "Experience",
+    "cv.omit": "Enterprise delivery. Client names omitted.",
+    "g1": "Led Angular Signals adoption in a micro-frontend insurance platform (quoting, policy, endorsements).",
+    "g2": "TDD + strict MR review bar before integration.",
+    "g3": "Delivery as an AI-pod: plans, SDD, memory bank, subagents. Human merge gate.",
+    "g4": "Product-configuration modules; stable FE/BE contracts across services.",
+    "g5": "Nx monorepo: Angular 9+ → current line, Node 16+ → 20+, ~6-month cadence.",
+    "g6": "Transversal UI libraries (Material wrapper, AG Grid 27+, shared components).",
+    "g7": "Unit + E2E (TestCafe). Jenkins, Grafana, qTest. Rancher. GitLab / GitHub. SAFe.",
+    "acc1": "Hardening-team lead: admin modules, RxJS, async flows, file upload.",
+    "acc2": "Angular 9: Material, Flex Layout, Sass, lazy loading, shared components.",
+    "acc3": "Collaboration on Spring Boot 2 / Java 12 microservices.",
+    "ind.h": "Independent",
+    "ind.1": "React / Next.js performance and architecture (TypeScript).",
+    "ind.2": "AI-pod workflow formalized (Anthropic 4D).",
+    "cv.cert": "Certifications",
+    "cv.certNote": "Credential valid through Oct 2026.",
+    "cv.edu": "Education",
+    "co.label": "Contact",
+    "co.title": "Hiring or mentoring",
+    "co.intro": "Full-time / contractor: Senior Frontend, Frontend Lead, Full-stack TypeScript. Mentoring starts with the Diagnostic. One LinkedIn note is enough — say which you want."
+  }
+};
+
+function setLang(lang) {
+  if (!T[lang]) lang = "es";
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const val = T[lang][key];
+    if (val) el.textContent = val;
+  });
+  const btnEs = document.getElementById("btn-es");
+  const btnEn = document.getElementById("btn-en");
+  if (btnEs) btnEs.classList.toggle("on", lang === "es");
+  if (btnEn) btnEn.classList.toggle("on", lang === "en");
+  if (T[lang]["doc.title"]) document.title = T[lang]["doc.title"];
+  const desc = T[lang]["doc.desc"];
+  if (desc) {
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", desc);
+    const og = document.querySelector('meta[property="og:description"]');
+    if (og) og.setAttribute("content", desc);
+  }
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle && T[lang]["doc.title"]) ogTitle.setAttribute("content", T[lang]["doc.title"]);
+  try {
+    localStorage.setItem("lang", lang);
+  } catch (_) {
+    /* private mode */
+  }
+}
+
+document.getElementById("btn-es")?.addEventListener("click", () => setLang("es"));
+document.getElementById("btn-en")?.addEventListener("click", () => setLang("en"));
+
+let initial = "es";
+try {
+  initial = localStorage.getItem("lang") === "en" ? "en" : "es";
+} catch (_) {
+  /* private mode */
+}
+setLang(initial);

@@ -1,0 +1,126 @@
+:root {
+  --bg: #0c1117;
+  --bg-2: #141b24;
+  --ink: #e8edf4;
+  --muted: #9aa8b8;
+  --line: #243041;
+  --gold: #e8c07a;
+  --gold-dim: #c9a05a;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.55 "IBM Plex Sans", system-ui, sans-serif;
+}
+h1, h2, h3, h4, .brand {
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+a { color: var(--gold); }
+.skip {
+  position: absolute;
+  left: -999px;
+  top: 0;
+}
+.skip:focus {
+  left: 12px;
+  top: 12px;
+  z-index: 20;
+  background: var(--gold);
+  color: #1a1408;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.wrap { width: min(920px, calc(100% - 40px)); margin-inline: auto; }
+.top {
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(12,17,23,.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.top-inner {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px;
+  min-height: 56px;
+}
+.brand { color: var(--ink); text-decoration: none; font-size: 18px; }
+.nav { display: flex; gap: 16px; margin-left: auto; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.nav a:hover { color: var(--ink); }
+.lang { display: flex; border: 1px solid var(--line); border-radius: 6px; }
+.lang button {
+  background: transparent; color: var(--muted); border: 0;
+  padding: 4px 8px; cursor: pointer; font: inherit; font-size: 12px;
+}
+.lang button.on { background: var(--bg-2); color: var(--ink); }
+.hero { padding: 64px 0 40px; }
+.kicker, .section-label {
+  color: var(--gold-dim); font-size: 13px; letter-spacing: .08em;
+  text-transform: uppercase; margin: 0 0 12px;
+}
+h1 { font-size: clamp(28px, 4vw, 40px); line-height: 1.2; margin: 0 0 16px; }
+.lede, .intro { color: var(--muted); max-width: 68ch; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0; }
+.btn {
+  display: inline-block; text-decoration: none;
+  padding: 10px 16px; border-radius: 8px; font-size: 14px; font-weight: 500;
+}
+.btn.primary { background: var(--gold); color: #1a1408; }
+.btn.ghost { border: 1px solid var(--line); color: var(--ink); }
+.btn.sm { margin-top: 12px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+.pills li {
+  border: 1px solid var(--line); color: var(--muted);
+  padding: 4px 10px; border-radius: 999px; font-size: 13px;
+}
+.block { padding: 48px 0; border-top: 1px solid var(--line); }
+h2 { font-size: 28px; margin: 0 0 12px; }
+.cards {
+  display: grid; gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 28px 0;
+}
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.card.featured { border-color: var(--gold-dim); }
+.price-kicker { margin: 0; font-size: 12px; color: var(--gold-dim); letter-spacing: .06em; text-transform: uppercase; }
+.card h3 { margin: 8px 0 4px; }
+.price { font-size: 22px; margin: 0; }
+.price span, .alt { color: var(--muted); font-size: 14px; }
+.card ul, .plain, .job ul { padding-left: 18px; }
+.card li, .plain li, .job li { margin: 6px 0; color: var(--muted); }
+.card .btn { margin-top: auto; align-self: flex-start; }
+.split { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; }
+.track-h { margin-top: 32px; }
+.track { color: var(--muted); }
+.track strong { color: var(--ink); }
+.fine { color: var(--muted); font-size: 13px; }
+.job { margin: 20px 0 28px; }
+.job header { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.job h4 { margin: 0; }
+.when, .muted { color: var(--muted); margin: 0; font-size: 14px; }
+.foot { padding: 32px 0 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+@media (max-width: 640px) {
+  .nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 8px;
+  }
+  .split { grid-template-columns: 1fr; }
+  .hero { padding-top: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

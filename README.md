@@ -10,6 +10,8 @@ Monterrey, Mexico · Available — remote LATAM / US nearshore · hybrid MTY ok
 [LinkedIn](https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/) ·
 [Angular L3 · 4J095ZM](https://www.angulartraining.com/certification/check.html)
 
+Site is static HTML on GitHub Pages (`master` root). Copy lives in `i18n.js` (chrome bilingual; CV body stays English). `node scripts/check-i18n.mjs` before commit.
+
 ---
 
 ## What I ship
@@ -55,7 +57,7 @@ type Focus = {
 | [eda-starter](https://github.com/pelukron/eda-starter) | Pub/Sub starter, patterns, memory bank |
 | [ngapp](https://github.com/pelukron/ngapp) | Angular / TypeScript sample |
 
-Enterprise client work (Globant 2021–2026, ACC ~2018–2021) stays unnamed on purpose.
+Enterprise client work (Globant 2021–2026, Accenture ~2018–2021) stays unnamed on purpose.
 
 ---
 
