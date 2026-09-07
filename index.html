@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diego Moreno — Angular Expert L3 · Senior Frontend</title>
+  <meta name="description" content="Senior Frontend Engineer. Angular Expert L3. Mentoría mid→senior y fractional nearshore. Monterrey / remote US." />
+  <meta property="og:title" content="Diego Moreno — Angular Expert L3" />
+  <meta property="og:description" content="CV público + Angular Senior Track. Signals, Nx, MFE, TDD. Mentoría 4 h/mes." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230c1117'/><text x='50%' y='54%' text-anchor='middle' font-family='Georgia' font-size='28' fill='%23e8c07a'>DM</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#top">Diego Moreno</a>
+      <nav class="nav">
+        <a href="#mentoria" data-i18n="nav.mentor">Mentoría</a>
+        <a href="#cv" data-i18n="nav.cv">CV</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="btn-es" class="on" onclick="setLang('es')">ES</button>
+        <button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <p class="kicker" data-i18n="hero.kicker">Senior Frontend · Angular Expert L3 · TypeScript / Node</p>
+      <h1 data-i18n="hero.title">Subo de nivel plataformas Angular enterprise. Mentoreo al mid que ya entrega y se atasca en lo que un lead sí mira.</h1>
+      <p class="lede" data-i18n="hero.lede">10+ años. Certificación Angular Level 3 (4J095ZM). Signals, Nx, micro-frontends, TDD, gate de merge request. Monterrey. Remote LATAM / US nearshore. Inglés C1.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#mentoria" data-i18n="hero.cta1">Ver Angular Senior Track</a>
+        <a class="btn ghost" href="#cv">CV</a>
+        <a class="btn ghost" href="https://mx.linkedin.com/in/diego-moreno-arellano-2a36528a" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <ul class="pills">
+        <li>Angular 17+</li>
+        <li>Signals / SignalStore</li>
+        <li>RxJS</li>
+        <li>Nx monorepos</li>
+        <li>Micro-frontends</li>
+        <li>Node 20+</li>
+        <li>TDD · TestCafe</li>
+        <li>AI-pod / SDD</li>
+      </ul>
+    </section>
+
+    <section class="wrap block" id="mentoria">
+      <p class="section-label" data-i18n="m.label">Mentoría</p>
+      <h2 data-i18n="m.title">Angular Senior Track</h2>
+      <p class="intro" data-i18n="m.intro">No es un curso de Angular. Es 4 h/mes sobre tu repo: Signals vs RxJS, Nx, MFE, tests que importan y calidad de MR. Cap 3 mentees.</p>
+
+      <div class="cards">
+        <article class="card">
+          <p class="price-kicker" data-i18n="a.k">Puerta de entrada</p>
+          <h3>Diagnostic</h3>
+          <p class="price">150 USD <span data-i18n="a.meta">· 75 min</span></p>
+          <ul>
+            <li data-i18n="a.1">Review en vivo de 1 PR o 1 módulo</li>
+            <li data-i18n="a.2">Plan de 1 página: 3 gaps, 3 ejercicios, siguiente paso</li>
+            <li data-i18n="a.3">Si no hay fit, ahí queda</li>
+          </ul>
+          <a class="btn primary sm" href="https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/" target="_blank" rel="noopener" data-i18n="a.cta">Pedir Diagnostic por LinkedIn</a>
+        </article>
+
+        <article class="card featured">
+          <p class="price-kicker" data-i18n="b.k">Producto core</p>
+          <h3>Senior Track</h3>
+          <p class="price">480 USD <span data-i18n="b.meta">· 4 h / mes</span></p>
+          <p class="alt" data-i18n="b.plus">Track+ 6 h · 680 USD</p>
+          <ul>
+            <li data-i18n="b.1">2 sesiones de 60 min (3 en Track+)</li>
+            <li data-i18n="b.2">Async cap 4 mensajes/semana · 24–48 h</li>
+            <li data-i18n="b.3">1 review de PR o diseño por sesión</li>
+            <li data-i18n="b.4">Entregable mensual de 1 página</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <p class="price-kicker" data-i18n="c.k">Cerrado · 2 semanas</p>
+          <h3>Interview / Lead</h3>
+          <p class="price">520 USD <span data-i18n="c.meta">· 4 sesiones</span></p>
+          <ul>
+            <li data-i18n="c.1">System design frontend (MFE, auth, flags)</li>
+            <li data-i18n="c.2">Live coding Signals + tests</li>
+            <li data-i18n="c.3">CV + 3 stories STAR reales</li>
+            <li data-i18n="c.4">Mock 45 min + rúbrica</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="split">
+        <div>
+          <h3 data-i18n="fit.yesT">Para quién sí</h3>
+          <ul class="plain">
+            <li data-i18n="fit.y1">Mid 3–7 años que ya entrega features</li>
+            <li data-i18n="fit.y2">Lead que necesita 4 h/mes de second pair of eyes en Nx/MFE</li>
+            <li data-i18n="fit.y3">Repo real (o recorte anónimo si hay NDA)</li>
+          </ul>
+        </div>
+        <div>
+          <h3 data-i18n="fit.noT">Para quién no</h3>
+          <ul class="plain">
+            <li data-i18n="fit.n1">Cero a héroes / “explícame *ngFor*”</li>
+            <li data-i18n="fit.n2">“Hazme el PR / el sprint”</li>
+            <li data-i18n="fit.n3">Garantía de empleo o de salario</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="track-h" data-i18n="track.h">Bloques (eligen 1 por mes)</h3>
+      <ol class="track">
+        <li><strong>Signals + RxJS.</strong> <span data-i18n="t.1">Done: un servicio hot-path sin subscription soup.</span></li>
+        <li><strong>SignalStore.</strong> <span data-i18n="t.2">Done: store con entidades + side effects testeable.</span></li>
+        <li><strong>Nx + UI lib.</strong> <span data-i18n="t.3">Done: public API, no barrel caótico.</span></li>
+        <li><strong>MFE / contratos.</strong> <span data-i18n="t.4">Done: contrato versionado + owner de breaking change.</span></li>
+        <li><strong>TDD útil.</strong> <span data-i18n="t.5">Done: tests que fallan si rompes el negocio.</span></li>
+        <li><strong>MR gate + English C1.</strong> <span data-i18n="t.6">Done: template de review que un lead US firmaría.</span></li>
+      </ol>
+
+      <p class="fine" data-i18n="m.fine">Pago adelantado. Extra 130 USD/h. Cancelación 7 días antes. Horas no usadas no se reembolsan. Implementar features del trabajo es freelance (70–90 USD/h), no mentoría.</p>
+    </section>
+
+    <section class="wrap block" id="cv">
+      <p class="section-label">CV</p>
+      <h2 data-i18n="cv.title">Diego Moreno Arellano</h2>
+      <p class="intro" data-i18n="cv.intro">Senior Frontend Engineer. Angular Expert (Level 3). TypeScript, Signals, RxJS, Nx, micro-frontends, Node 20+. Available. Remote LATAM / US nearshore.</p>
+
+      <h3 data-i18n="cv.sum">Summary</h3>
+      <p data-i18n="cv.p1">Upgrade and stabilize enterprise Angular platforms: version migrations on a 6-month cadence, shared UI libraries, AG Grid, Material. Business modules with TDD, E2E, and merge-request quality gates. React/Next.js in active use.</p>
+      <p data-i18n="cv.p2">Agentic delivery, not vibe-coding. Anthropic AI Fluency. AI-pod: written plans, spec-driven development, memory bank, deterministic workflows, subagents implement / test / review. MCP + Cline/Cursor execute; human gate on architecture and merges.</p>
+
+      <h3 data-i18n="cv.exp">Experience</h3>
+      <article class="job">
+        <header>
+          <h4>Globant — Senior Frontend Developer</h4>
+          <p class="when">Monterrey · Apr 2021 – Jun 2026</p>
+        </header>
+        <p class="muted" data-i18n="cv.omit">Enterprise delivery. Client names omitted.</p>
+        <p><strong>2025 – 2026</strong></p>
+        <ul>
+          <li data-i18n="g1">Led Angular Signals adoption in a micro-frontend insurance platform (quoting, policy, endorsements).</li>
+          <li data-i18n="g2">TDD + strict MR review bar before integration.</li>
+          <li data-i18n="g3">Delivery as an AI-pod: plans, SDD, memory bank, subagents. Human merge gate.</li>
+          <li data-i18n="g4">Product-configuration modules; stable FE/BE contracts across services.</li>
+        </ul>
+        <p><strong>2021 – 2025 · Migration lead</strong></p>
+        <ul>
+          <li data-i18n="g5">Nx monorepo: Angular 9+ → current line, Node 16+ → 20+, ~6-month cadence.</li>
+          <li data-i18n="g6">Transversal UI libraries (Material wrapper, AG Grid 27+, shared components).</li>
+          <li data-i18n="g7">Unit + E2E (TestCafe). Jenkins, Grafana, qTest. Rancher. GitLab / GitHub. SAFe.</li>
+          <li>Angular Expert L3 — credential 4J095ZM.</li>
+        </ul>
+      </article>
+      <article class="job">
+        <header>
+          <h4>Accenture — Frontend / Full-stack</h4>
+          <p class="when">Monterrey · c. 2018 – Apr 2021</p>
+        </header>
+        <ul>
+          <li data-i18n="acc1">Hardening-team lead: admin modules, RxJS, async flows, file upload.</li>
+          <li data-i18n="acc2">Angular 9: Material, Flex Layout, Sass, lazy loading, shared components.</li>
+          <li data-i18n="acc3">Collaboration on Spring Boot 2 / Java 12 microservices.</li>
+        </ul>
+      </article>
+      <article class="job">
+        <header>
+          <h4 data-i18n="ind.h">Independent</h4>
+          <p class="when">Jun 2026 – Present</p>
+        </header>
+        <ul>
+          <li data-i18n="ind.1">React / Next.js performance and architecture (TypeScript).</li>
+          <li data-i18n="ind.2">AI-pod workflow formalized (Anthropic 4D).</li>
+        </ul>
+      </article>
+
+      <h3 data-i18n="cv.cert">Certifications</h3>
+      <ul class="plain">
+        <li>Angular Level 3 — Expert Developer · Angular Training · <strong>4J095ZM</strong> · Oct 2023 – Oct 2026 · <a href="https://www.angulartraining.com/certification/check.html" target="_blank" rel="noopener">Verify</a></li>
+        <li>AI Fluency: Framework and Foundations · Anthropic Education · 2026</li>
+      </ul>
+
+      <h3 data-i18n="cv.edu">Education</h3>
+      <p>B.S. Computer Science · UANL — FCFM · Aug 2011 – Dec 2015 · Monterrey</p>
+      <p>Spanish native · English C1</p>
+    </section>
+
+    <section class="wrap block" id="contacto">
+      <p class="section-label" data-i18n="co.label">Contacto</p>
+      <h2 data-i18n="co.title">Hiring o mentoría</h2>
+      <p class="intro" data-i18n="co.intro">Full-time / contractor: Senior Frontend, Frontend Lead, Full-stack TypeScript. Mentoría: empieza por el Diagnostic. Un mensaje en LinkedIn basta — indica cuál de los dos.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/pelukron/diego-moreno" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    <p>© 2026 Diego Moreno Arellano · Monterrey</p>
+  </footer>
+
+  <script src="i18n.js"></script>
+</body>
+</html>
