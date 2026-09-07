@@ -1,32 +1,51 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const publicFiles = ["index.html", "i18n.js", "README.md", "404.html"];
+const rules = JSON.parse(readFileSync(join(root, "scripts/domain-rules.json"), "utf8"));
 const errors = [];
 
 function read(rel) {
   return readFileSync(join(root, rel), "utf8");
 }
 
-for (const rel of publicFiles) {
+for (const rel of rules.requiredFiles) {
+  if (!existsSync(join(root, rel))) errors.push(`missing required file: ${rel}`);
+}
+
+for (const rel of rules.publicFiles) {
   const src = read(rel);
-  if (/\bACC\b/.test(src)) errors.push(`${rel}: forbidden employer abbreviation ACC`);
-  if (/Interview\s*\/\s*Lead/i.test(src)) errors.push(`${rel}: Interview/Lead is not a product on this URL`);
+  for (const rule of rules.forbidden) {
+    const re = new RegExp(rule.pattern, rule.flags || "");
+    if (re.test(src)) errors.push(`${rel}: ${rule.message} (${rule.id})`);
+  }
 }
 
 const html = read("index.html");
-const cv = html.indexOf('id="cv"');
-const mentoria = html.indexOf('id="mentoria"');
-if (cv < 0 || mentoria < 0) errors.push("index.html: missing id=cv or id=mentoria");
-else if (cv > mentoria) errors.push("index.html: #cv must come before #mentoria (Hiring owns the URL)");
+const order = rules.indexHtml.sectionOrder;
+for (let i = 1; i < order.length; i++) {
+  const prev = html.indexOf(`id="${order[i - 1]}"`);
+  const next = html.indexOf(`id="${order[i]}"`);
+  if (prev < 0) errors.push(`index.html: missing id=${order[i - 1]}`);
+  if (next < 0) errors.push(`index.html: missing id=${order[i]}`);
+  if (prev >= 0 && next >= 0 && prev > next) {
+    errors.push(`index.html: #${order[i - 1]} must come before #${order[i]}`);
+  }
+}
 
-if (!/<html\s+lang="en"/i.test(html)) errors.push('index.html: first paint must be lang="en"');
+const lang = rules.indexHtml.lang;
+if (!new RegExp(`<html\\s+lang="${lang}"`, "i").test(html)) {
+  errors.push(`index.html: first paint must be lang="${lang}"`);
+}
+
+for (const needle of rules.indexHtml.mustContain) {
+  if (!html.includes(needle)) errors.push(`index.html: missing required string: ${needle}`);
+}
 
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log(`ok: domain lint ${publicFiles.length} public files`);
+console.log(`ok: domain lint ${rules.publicFiles.length} public files, ${rules.forbidden.length} forbidden rules`);

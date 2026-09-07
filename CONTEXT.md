@@ -13,8 +13,12 @@ A public fact a script cannot verify (C1 vs LinkedIn, L3 still live, portrait is
 _Avoid_: putting Claims in the Gate, “the pipeline says the CV is true”
 
 **Pipe**:
-GitHub Actions on `pull_request` running the Gate. The same scripts run locally with Node. Branch names include the GitHub issue number (`kind/<issue>-slug`).
+GitHub Actions on `pull_request` running `node scripts/gate.mjs`. The same command is the local Gate. Branch names include the GitHub issue number (`kind/<issue>-slug`).
 _Avoid_: Husky as the source of truth, pushing to `master`, branches without a ticket number
+
+**Artifact**:
+A checked-in, re-runnable rule or script. Tomorrow’s human trusts Artifacts, not the chat that produced them. When a rule can fail a PR, it lives as data or a script, not as advice.
+_Avoid_: agent-as-memory, quality that exists only in a session log
 
 ## Language
 
