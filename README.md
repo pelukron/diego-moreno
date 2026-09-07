@@ -12,7 +12,7 @@ Monterrey, Mexico · Available — remote LATAM / US nearshore · hybrid MTY ok
 
 Site is static HTML on GitHub Pages (`master` root). Default language is English. Copy lives in `i18n.js` (chrome bilingual; CV body stays English). Domain language: `CONTEXT.md`.
 
-Gate (run before a PR): `node scripts/gate.mjs`. Forbidden public copy lives in `scripts/domain-rules.json`. GitHub Actions runs the same on every pull request. Branch names include the issue number (`ci/4-pr-gates`).
+Gate (run before a PR): `node scripts/gate.mjs`. Forbidden public copy lives in `scripts/domain-rules.json`. Pages publishes only `scripts/pages-files.txt`. GitHub Actions: `gate` then `deploy` on `master`. Branch names include the issue number (`ci/8-pages-needs-gate`).
 
 ---
 

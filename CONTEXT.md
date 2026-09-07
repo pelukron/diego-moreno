@@ -13,8 +13,8 @@ A public fact a script cannot verify (C1 vs LinkedIn, L3 still live, portrait is
 _Avoid_: putting Claims in the Gate, “the pipeline says the CV is true”
 
 **Pipe**:
-GitHub Actions on `pull_request` running `node scripts/gate.mjs`. The same command is the local Gate. Branch names include the GitHub issue number (`kind/<issue>-slug`).
-_Avoid_: Husky as the source of truth, pushing to `master`, branches without a ticket number
+GitHub Actions: job `gate` (`node scripts/gate.mjs`) on pull requests and on `master`; job `deploy` runs only after `gate` on push to `master`. The live site is the list in `scripts/pages-files.txt`, not the whole repo. Branch names include the GitHub issue number (`kind/<issue>-slug`). Requiring the `gate` check to merge is a human Settings step.
+_Avoid_: Husky as the source of truth, pushing to `master`, branches without a ticket number, Pages deploy from branch in parallel with Gate
 
 **Artifact**:
 A checked-in, re-runnable rule or script. Tomorrow’s human trusts Artifacts, not the chat that produced them. When a rule can fail a PR, it lives as data or a script, not as advice.

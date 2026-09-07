@@ -14,6 +14,14 @@ for (const rel of rules.requiredFiles) {
   if (!existsSync(join(root, rel))) errors.push(`missing required file: ${rel}`);
 }
 
+const pagesList = join(root, "scripts/pages-files.txt");
+if (!existsSync(pagesList)) errors.push("missing required file: scripts/pages-files.txt");
+else {
+  for (const rel of read("scripts/pages-files.txt").split(/\r?\n/).filter(Boolean)) {
+    if (!existsSync(join(root, rel))) errors.push(`pages artifact missing file: ${rel}`);
+  }
+}
+
 for (const rel of rules.publicFiles) {
   const src = read(rel);
   for (const rule of rules.forbidden) {
