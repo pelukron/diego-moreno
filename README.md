@@ -1,6 +1,6 @@
 # Diego Moreno Arellano
 
-**Senior Frontend · Web Architect · Angular Expert (Level 3)**  
+**Angular Expert (Level 3) · Senior Frontend**  
 TypeScript-first SPAs: Signals, Nx, micro-frontends, Node 20+.  
 React / Next in active use. English C1.
 
@@ -10,7 +10,7 @@ Monterrey, Mexico · Available — remote LATAM / US nearshore · hybrid MTY ok
 [LinkedIn](https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/) ·
 [Angular L3 · 4J095ZM](https://www.angulartraining.com/certification/check.html)
 
-Site is static HTML on GitHub Pages (`master` root). Copy lives in `i18n.js` (chrome bilingual; CV body stays English). `node scripts/check-i18n.mjs` before commit.
+Site is static HTML on GitHub Pages (`master` root). Default language is English. Copy lives in `i18n.js` (chrome bilingual; CV body stays English). `node scripts/check-i18n.mjs` before commit. Domain language: `CONTEXT.md`.
 
 ---
 
