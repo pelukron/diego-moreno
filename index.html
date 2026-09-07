@@ -4,10 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diego Moreno — Angular Expert L3 · Senior Frontend</title>
-  <meta name="description" content="Senior Frontend Engineer. Angular Expert L3. Mentoría mid→senior y fractional nearshore. Monterrey / remote US." />
-  <meta property="og:title" content="Diego Moreno — Angular Expert L3" />
-  <meta property="og:description" content="CV público + Angular Senior Track. Signals, Nx, MFE, TDD. Mentoría 4 h/mes." />
+  <meta name="description" content="Senior Frontend Engineer. Angular Expert L3. Public resume and mid-to-senior mentoring. Monterrey / remote US." />
+  <link rel="canonical" href="https://pelukron.github.io/diego-moreno/" />
+  <meta property="og:title" content="Diego Moreno — Angular Expert L3 · Senior Frontend" />
+  <meta property="og:description" content="Senior Frontend Engineer. Angular Expert L3. Public resume and mid-to-senior mentoring. Monterrey / remote US." />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pelukron.github.io/diego-moreno/" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%230c1117'/><text x='50%' y='54%' text-anchor='middle' font-family='Georgia' font-size='28' fill='%23e8c07a'>DM</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,14 +21,14 @@
   <header class="top">
     <div class="wrap top-inner">
       <a class="brand" href="#top">Diego Moreno</a>
-      <nav class="nav">
+      <nav class="nav" aria-label="Primary">
         <a href="#mentoria" data-i18n="nav.mentor">Mentoría</a>
         <a href="#cv" data-i18n="nav.cv">CV</a>
         <a href="#contacto" data-i18n="nav.contact">Contacto</a>
       </nav>
       <div class="lang" role="group" aria-label="Language">
-        <button type="button" id="btn-es" class="on" onclick="setLang('es')">ES</button>
-        <button type="button" id="btn-en" onclick="setLang('en')">EN</button>
+        <button type="button" id="btn-es" class="on">ES</button>
+        <button type="button" id="btn-en">EN</button>
       </div>
     </div>
   </header>
@@ -37,9 +39,9 @@
       <h1 data-i18n="hero.title">Subo de nivel plataformas Angular enterprise. Mentoreo al mid que ya entrega y se atasca en lo que un lead sí mira.</h1>
       <p class="lede" data-i18n="hero.lede">10+ años. Certificación Angular Level 3 (4J095ZM). Signals, Nx, micro-frontends, TDD, gate de merge request. Monterrey. Remote LATAM / US nearshore. Inglés C1.</p>
       <div class="cta-row">
-        <a class="btn primary" href="#mentoria" data-i18n="hero.cta1">Ver Angular Senior Track</a>
-        <a class="btn ghost" href="#cv">CV</a>
-        <a class="btn ghost" href="https://mx.linkedin.com/in/diego-moreno-arellano-2a36528a" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn primary" href="#cv" data-i18n="hero.ctaHire">Ver CV</a>
+        <a class="btn ghost" href="#mentoria" data-i18n="hero.ctaMentor">Angular Senior Track</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
       <ul class="pills">
         <li>Angular 17+</li>
@@ -82,6 +84,7 @@
             <li data-i18n="b.3">1 review de PR o diseño por sesión</li>
             <li data-i18n="b.4">Entregable mensual de 1 página</li>
           </ul>
+          <a class="btn ghost sm" href="https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/" target="_blank" rel="noopener" data-i18n="b.cta">Pedir por LinkedIn</a>
         </article>
 
         <article class="card">
@@ -94,6 +97,7 @@
             <li data-i18n="c.3">CV + 3 stories STAR reales</li>
             <li data-i18n="c.4">Mock 45 min + rúbrica</li>
           </ul>
+          <a class="btn ghost sm" href="https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/" target="_blank" rel="noopener" data-i18n="c.cta">Pedir por LinkedIn</a>
         </article>
       </div>
 
@@ -116,7 +120,7 @@
         </div>
       </div>
 
-      <h3 class="track-h" data-i18n="track.h">Bloques (eligen 1 por mes)</h3>
+      <h3 class="track-h" data-i18n="track.h">Bloques (elige 1 por mes)</h3>
       <ol class="track">
         <li><strong>Signals + RxJS.</strong> <span data-i18n="t.1">Done: un servicio hot-path sin subscription soup.</span></li>
         <li><strong>SignalStore.</strong> <span data-i18n="t.2">Done: store con entidades + side effects testeable.</span></li>
@@ -130,7 +134,7 @@
     </section>
 
     <section class="wrap block" id="cv">
-      <p class="section-label">CV</p>
+      <p class="section-label" data-i18n="cv.label">CV</p>
       <h2 data-i18n="cv.title">Diego Moreno Arellano</h2>
       <p class="intro" data-i18n="cv.intro">Senior Frontend Engineer. Angular Expert (Level 3). TypeScript, Signals, RxJS, Nx, micro-frontends, Node 20+. Available. Remote LATAM / US nearshore.</p>
 
@@ -185,6 +189,7 @@
       <h3 data-i18n="cv.cert">Certifications</h3>
       <ul class="plain">
         <li>Angular Level 3 — Expert Developer · Angular Training · <strong>4J095ZM</strong> · Oct 2023 – Oct 2026 · <a href="https://www.angulartraining.com/certification/check.html" target="_blank" rel="noopener">Verify</a></li>
+        <li class="muted" data-i18n="cv.certNote">Credential valid through Oct 2026.</li>
         <li>AI Fluency: Framework and Foundations · Anthropic Education · 2026</li>
       </ul>
 
