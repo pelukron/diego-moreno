@@ -5,7 +5,8 @@
     "index.html",
     "i18n.js",
     "scripts/check-i18n.mjs",
-    "scripts/domain-rules.json"
+    "scripts/domain-rules.json",
+    "scripts/pages-files.txt"
   ],
   "forbidden": [
     {
