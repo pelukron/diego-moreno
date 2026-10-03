@@ -56,10 +56,10 @@ type Focus = {
 
 | Repo | Why it is here |
 |---|---|
-| [diego-moreno](https://github.com/pelukron/diego-moreno) | Public CV + Angular Senior Track (GitHub Pages) |
-| [react-stack-roadmap](https://github.com/pelukron/react-stack-roadmap) | React/Next evidence: app-shell + micro-frontends |
-| [eda-starter](https://github.com/pelukron/eda-starter) | Pub/Sub starter, patterns, memory bank |
-| [ngapp](https://github.com/pelukron/ngapp) | Angular / TypeScript sample |
+| [diego-moreno](https://github.com/pelukron/diego-moreno) | Open `index.html` — the public CV and Angular Senior Track. |
+| [react-stack-roadmap](https://github.com/pelukron/react-stack-roadmap) | Open `apps/shell` and `apps/remote-home` — app-shell plus one remote. |
+| [eda-starter](https://github.com/pelukron/eda-starter) | Open `src/demo.ts` — in-memory pub/sub, no broker. |
+| [ngapp](https://github.com/pelukron/ngapp) | Open `src/` — an Angular app (`angular.json`). |
 
 Enterprise client work (Globant 2021–2026, Accenture ~2018–2021) stays unnamed on purpose.
 
@@ -73,11 +73,8 @@ Enterprise client work (Globant 2021–2026, Accenture ~2018–2021) stays unnam
 ---
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=angular,ts,js,nodejs,react,nextjs,nestjs,html,css,sass,git,github,gitlab,linux" alt="stack icons" />
+  <img src="https://skillicons.dev/icons?i=angular,ts,rxjs,nodejs,react,nextjs" alt="stack icons" />
 </p>
-
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=pelukron&show_icons=true&theme=transparent&hide_title=true)
-![Top langs](https://github-readme-stats.vercel.app/api/top-langs/?username=pelukron&layout=compact&theme=transparent&hide_title=true)
 
 ---
 
