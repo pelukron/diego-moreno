@@ -1,5 +1,7 @@
 # Diego Moreno Arellano
 
+🧭 Map: [🚀 What I ship](#-what-i-ship) · [🧰 Stack](#-stack) · [📦 Selected public work](#-selected-public-work) · [🏅 Certifications](#-certifications)
+
 **Angular Expert (Level 3) · Senior Frontend**  
 TypeScript-first SPAs: Signals, Nx, micro-frontends, Node 20+.  
 React / Next in active use. English C1.
@@ -12,11 +14,11 @@ Monterrey, Mexico · Available — remote LATAM / US nearshore · hybrid MTY ok
 
 Site is static HTML on GitHub Pages (`master` root). Default language is English. Copy lives in `i18n.js` (chrome bilingual; CV body stays English). Domain language: `CONTEXT.md`.
 
-Gate (run before a PR): `node scripts/gate.mjs`. Forbidden public copy lives in `scripts/domain-rules.json`. Pages publishes only `scripts/pages-files.txt`. GitHub Actions: `gate` then `deploy` on `master`. Branch names include the issue number (`ci/8-pages-needs-gate`).
+Gate (run before a PR): `bash bin/gate.sh`. Forbidden public copy lives in `scripts/domain-rules.json`. Pages publishes only `scripts/pages-files.txt`. GitHub Actions: `gate` then `deploy` on `master`. Branch names include the issue number (`ci/8-pages-needs-gate`).
 
 ---
 
-## What I ship
+## 🚀 What I ship
 
 I upgrade and stabilize **enterprise Angular platforms**: version cadence (~6 months), shared UI libraries, AG Grid, Material, TDD + E2E, and a hard merge-request gate.
 
@@ -30,7 +32,7 @@ Target roles: **Senior Frontend / Frontend Lead / Web Architect / UI platform**.
 
 ---
 
-## Stack
+## 🧰 Stack
 
 | Tier | What I claim | Evidence |
 |---|---|---|
@@ -50,7 +52,7 @@ type Focus = {
 
 ---
 
-## Selected public work
+## 📦 Selected public work
 
 | Repo | Why it is here |
 |---|---|
@@ -63,7 +65,7 @@ Enterprise client work (Globant 2021–2026, Accenture ~2018–2021) stays unnam
 
 ---
 
-## Certifications
+## 🏅 Certifications
 
 - **Angular Level 3 — Expert Developer** · Angular Training · `4J095ZM` · Oct 2023–Oct 2026  
 - **AI Fluency: Framework and Foundations** · Anthropic Education · 2026
