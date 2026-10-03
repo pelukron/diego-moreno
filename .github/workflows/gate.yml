@@ -40,7 +40,7 @@ jobs:
             [ -z "$f" ] && continue
             cp "$f" _site/
           done < scripts/pages-files.txt
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

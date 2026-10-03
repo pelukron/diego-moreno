@@ -51,6 +51,13 @@ for (const needle of rules.indexHtml.mustContain) {
   if (!html.includes(needle)) errors.push(`index.html: missing required string: ${needle}`);
 }
 
+const readme = read("README.md");
+for (const needle of rules.indexHtml.mustContain) {
+  if (!readme.includes(needle)) {
+    errors.push(`readme mustContain: README.md missing required string: ${needle}`);
+  }
+}
+
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
