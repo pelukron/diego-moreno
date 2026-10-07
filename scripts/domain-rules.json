@@ -33,24 +33,5 @@
       "https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/"
     ]
   },
-  "cvBodyKeys": [
-    "cv.intro",
-    "cv.p1",
-    "cv.p2",
-    "cv.omit",
-    "g1",
-    "g2",
-    "g3",
-    "g4",
-    "g5",
-    "g6",
-    "g7",
-    "acc1",
-    "acc2",
-    "acc3",
-    "ind.h",
-    "ind.1",
-    "ind.2",
-    "cv.certNote"
-  ]
+  "cvBodyPrefixes": ["acc", "cv.certNote", "cv.intro", "cv.omit", "cv.p", "g", "ind."]
 }
