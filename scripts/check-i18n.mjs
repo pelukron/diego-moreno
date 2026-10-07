@@ -73,6 +73,34 @@ const es = dictMap(i18n, "es");
 const en = dictMap(i18n, "en");
 const errors = [];
 
+const headMatch = (re, group = 1) => {
+  const m = html.match(re);
+  return m ? m[group] : null;
+};
+const headMetaContent = (attr) => {
+  const tag = headMatch(new RegExp(`<meta\\s[^>]*${attr}[^>]*>`, "i"), 0);
+  if (tag === null) return null;
+  const content = tag.match(/\bcontent="([^"]*)"/i);
+  return content ? content[1] : null;
+};
+
+const headTitle = headMatch(/<title>([\s\S]*?)<\/title>/i);
+if (headTitle === null || headTitle.trim() !== en.get("doc.title")) {
+  errors.push("html-en parity: title !== en doc.title");
+}
+const metaDesc = headMetaContent('name="description"');
+if (metaDesc === null || metaDesc !== en.get("doc.desc")) {
+  errors.push("html-en parity: meta description !== en doc.desc");
+}
+const ogTitle = headMetaContent('property="og:title"');
+if (ogTitle === null || ogTitle !== en.get("doc.title")) {
+  errors.push("html-en parity: og:title !== en doc.title");
+}
+const ogDesc = headMetaContent('property="og:description"');
+if (ogDesc === null || ogDesc !== en.get("doc.desc")) {
+  errors.push("html-en parity: og:description !== en doc.desc");
+}
+
 for (const key of htmlKeys) {
   if (!es.has(key)) errors.push(`es missing HTML key: ${key}`);
   if (!en.has(key)) errors.push(`en missing HTML key: ${key}`);
