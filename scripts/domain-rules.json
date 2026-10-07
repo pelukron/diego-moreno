@@ -7,7 +7,6 @@
     "scripts/gate.mjs",
     "scripts/check-i18n.mjs",
     "scripts/check-domain.mjs",
-    "bin/gate.sh",
     "scripts/domain-rules.json",
     "scripts/pages-files.txt",
     "scripts/stage-pages.sh"
