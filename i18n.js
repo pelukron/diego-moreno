@@ -1,5 +1,6 @@
 // Chrome, nav, mentoring, and contact are bilingual. Default language is English.
 // CV body (summaries, bullets, employer lines) stays English for recruiters.
+// Enforced: keys under cvBodyPrefixes in scripts/domain-rules.json must match in es/en.
 const T = {
   es: {
     "doc.title": "Diego Moreno — Angular Expert L3 · Senior Frontend",

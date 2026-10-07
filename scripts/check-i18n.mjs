@@ -84,15 +84,17 @@ for (const key of en.keys()) {
   if (!es.has(key)) errors.push(`es missing en key: ${key}`);
 }
 
-const cvBodyKeys = rules.cvBodyKeys;
-if (!Array.isArray(cvBodyKeys) || cvBodyKeys.length === 0) {
-  errors.push("cvBodyKeys: missing from domain-rules.json");
+const cvBodyPrefixes = rules.cvBodyPrefixes;
+if (!Array.isArray(cvBodyPrefixes) || cvBodyPrefixes.length === 0) {
+  errors.push("cvBodyPrefixes: missing from domain-rules.json");
 } else {
-  for (const key of cvBodyKeys) {
-    if (!es.has(key)) errors.push(`cvBodyKeys: missing es key ${key}`);
-    if (!en.has(key)) errors.push(`cvBodyKeys: missing en key ${key}`);
-    if (es.has(key) && en.has(key) && es.get(key) !== en.get(key)) {
-      errors.push(`cvBodyKeys: es !== en for ${key}`);
+  const covered = (key) => cvBodyPrefixes.some((p) => key === p || key.startsWith(p));
+  for (const key of new Set([...es.keys(), ...en.keys()])) {
+    if (!covered(key)) continue;
+    if (!es.has(key)) errors.push(`cvBodyPrefixes: missing es key ${key}`);
+    else if (!en.has(key)) errors.push(`cvBodyPrefixes: missing en key ${key}`);
+    else if (es.get(key) !== en.get(key)) {
+      errors.push(`cvBodyPrefixes: es !== en for ${key}`);
     }
   }
 }
