@@ -33,5 +33,6 @@
       "https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/"
     ]
   },
+  "_comment_cvBodyPrefixes": "family match only: exact, or trailing-dot prefix, or digit next (g1 not goals)",
   "cvBodyPrefixes": ["acc", "cv.certNote", "cv.intro", "cv.omit", "cv.p", "g", "ind."]
 }
