@@ -1,0 +1,42 @@
+name: Backlog
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  close-out:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment verification on linked issues and PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr="${{ github.event.pull_request.number }}"
+          branch="${{ github.event.pull_request.head.ref }}"
+          sha="${{ github.event.pull_request.merge_commit_sha }}"
+          body="$(gh pr view "$pr" --json body --jq .body)"
+          issues="$(printf '%s' "$body" | grep -oiE '(closes|fixes|refs?) #[0-9]+' | grep -oiE '#[0-9]+' | tr -d '#' | sort -u)"
+          [ -z "$issues" ] && echo "no linked issues, staying silent" && exit 0
+          gate="$(gh pr checks "$pr" --json name,state --jq '[.[] | select(.name=="gate")] | map(.state) | join(",")')"
+          [ -z "$gate" ] && gate="unknown"
+          links=""
+          for n in $issues; do
+            if printf '%s' "$body" | grep -qiE "(closes|fixes) #$n([^0-9]|$)"; then verb="closed by"; else verb="referenced by"; fi
+            pending="$(gh issue view "$n" --json body --jq .body | grep -E '^- \[ \]' || true)"
+            msg="Backlog close-out: PR #$pr merged (\`$branch\`, \`$sha\`)."
+            msg="$msg Gate check (gate): $gate. This issue was $verb this PR."
+            if [ -n "$pending" ]; then
+              msg="$msg Human verification pending:"
+              msg="$(printf '%s\n%s' "$msg" "$pending")"
+            fi
+            gh issue comment "$n" --body "$msg"
+            links="$links #$n"
+          done
+          gh pr comment "$pr" --body "Backlog close-out: merged \`$sha\` from \`$branch\`. Gate check (gate): $gate. Linked issues:$links"
