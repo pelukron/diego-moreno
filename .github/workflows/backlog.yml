@@ -17,6 +17,7 @@ jobs:
       - name: Comment verification on linked issues and PR
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
         run: |
           pr="${{ github.event.pull_request.number }}"
           branch="${{ github.event.pull_request.head.ref }}"
@@ -37,6 +38,7 @@ jobs:
               msg="$(printf '%s\n%s' "$msg" "$pending")"
             fi
             gh issue comment "$n" --body "$msg"
+            gh issue edit "$n" --remove-label ready-for-agent --remove-label ready-for-human --remove-label needs-info
             links="$links #$n"
           done
           gh pr comment "$pr" --body "Backlog close-out: merged \`$sha\` from \`$branch\`. Gate check (gate): $gate. Linked issues:$links"
