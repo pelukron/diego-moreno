@@ -73,6 +73,34 @@ const es = dictMap(i18n, "es");
 const en = dictMap(i18n, "en");
 const errors = [];
 
+const headMatch = (re, group = 1) => {
+  const m = html.match(re);
+  return m ? m[group] : null;
+};
+const headMetaContent = (attr) => {
+  const tag = headMatch(new RegExp(`<meta\\s[^>]*${attr}[^>]*>`, "i"), 0);
+  if (tag === null) return null;
+  const content = tag.match(/\bcontent="([^"]*)"/i);
+  return content ? content[1] : null;
+};
+
+const headTitle = headMatch(/<title>([\s\S]*?)<\/title>/i);
+if (headTitle === null || headTitle.trim() !== en.get("doc.title")) {
+  errors.push("html-en parity: title !== en doc.title");
+}
+const metaDesc = headMetaContent('name="description"');
+if (metaDesc === null || metaDesc !== en.get("doc.desc")) {
+  errors.push("html-en parity: meta description !== en doc.desc");
+}
+const ogTitle = headMetaContent('property="og:title"');
+if (ogTitle === null || ogTitle !== en.get("doc.title")) {
+  errors.push("html-en parity: og:title !== en doc.title");
+}
+const ogDesc = headMetaContent('property="og:description"');
+if (ogDesc === null || ogDesc !== en.get("doc.desc")) {
+  errors.push("html-en parity: og:description !== en doc.desc");
+}
+
 for (const key of htmlKeys) {
   if (!es.has(key)) errors.push(`es missing HTML key: ${key}`);
   if (!en.has(key)) errors.push(`en missing HTML key: ${key}`);
@@ -88,7 +116,36 @@ const cvBodyPrefixes = rules.cvBodyPrefixes;
 if (!Array.isArray(cvBodyPrefixes) || cvBodyPrefixes.length === 0) {
   errors.push("cvBodyPrefixes: missing from domain-rules.json");
 } else {
-  const covered = (key) => cvBodyPrefixes.some((p) => key === p || key.startsWith(p));
+  const covered = (key) =>
+    cvBodyPrefixes.some((p) => {
+      if (key === p) return true;
+      if (!key.startsWith(p)) return false;
+      if (p.endsWith(".")) return true;
+      const next = key[p.length];
+      return next >= "0" && next <= "9";
+    });
+  const prefixExamples = [
+    ["g", true],
+    ["g1", true],
+    ["g10", true],
+    ["goals", false],
+    ["cv.p", true],
+    ["cv.p1", true],
+    ["cv.public", false],
+    ["cv.intro", true],
+    ["cv.introExtra", false],
+    ["ind.", true],
+    ["ind.h", true],
+    ["ind.1", true],
+    ["acc", true],
+    ["acc1", true],
+    ["accenture", false],
+  ];
+  for (const [key, want] of prefixExamples) {
+    if (covered(key) !== want) {
+      errors.push(`cvBodyPrefixes: example ${key} covered=${covered(key)}, want ${want}`);
+    }
+  }
   for (const key of new Set([...es.keys(), ...en.keys()])) {
     if (!covered(key)) continue;
     if (!es.has(key)) errors.push(`cvBodyPrefixes: missing es key ${key}`);
