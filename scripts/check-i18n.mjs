@@ -88,7 +88,36 @@ const cvBodyPrefixes = rules.cvBodyPrefixes;
 if (!Array.isArray(cvBodyPrefixes) || cvBodyPrefixes.length === 0) {
   errors.push("cvBodyPrefixes: missing from domain-rules.json");
 } else {
-  const covered = (key) => cvBodyPrefixes.some((p) => key === p || key.startsWith(p));
+  const covered = (key) =>
+    cvBodyPrefixes.some((p) => {
+      if (key === p) return true;
+      if (!key.startsWith(p)) return false;
+      if (p.endsWith(".")) return true;
+      const next = key[p.length];
+      return next >= "0" && next <= "9";
+    });
+  const prefixExamples = [
+    ["g", true],
+    ["g1", true],
+    ["g10", true],
+    ["goals", false],
+    ["cv.p", true],
+    ["cv.p1", true],
+    ["cv.public", false],
+    ["cv.intro", true],
+    ["cv.introExtra", false],
+    ["ind.", true],
+    ["ind.h", true],
+    ["ind.1", true],
+    ["acc", true],
+    ["acc1", true],
+    ["accenture", false],
+  ];
+  for (const [key, want] of prefixExamples) {
+    if (covered(key) !== want) {
+      errors.push(`cvBodyPrefixes: example ${key} covered=${covered(key)}, want ${want}`);
+    }
+  }
   for (const key of new Set([...es.keys(), ...en.keys()])) {
     if (!covered(key)) continue;
     if (!es.has(key)) errors.push(`cvBodyPrefixes: missing es key ${key}`);
