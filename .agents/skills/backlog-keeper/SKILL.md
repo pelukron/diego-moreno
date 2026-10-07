@@ -47,5 +47,31 @@ comment (e.g. why a blanket rule is wrong), never silently.
 On merge, the `backlog` workflow comments on each linked issue and on
 the PR: merged PR + branch + merge SHA, `gate` check conclusion, and
 the issue's unchecked acceptance boxes as human-verification pending.
+It then strips the mirror labels (`ready-for-agent`, `ready-for-human`,
+`needs-info`) so closed issues never carry a stale state tag.
 It never checks acceptance boxes. If the trail is missing (no
 `Closes/Refs #n`), it stays silent.
+
+## Troubleshooting (self-improving log)
+
+Append every new incident as: date, symptom, cause, rule. The log is
+the fix; a fix without a log entry will repeat.
+
+- 2026-10-07 · Backlog job red with `fatal: not a git repository`.
+  Cause: `gh` resolves the repo from the git remote and the job has no
+  checkout step. Rule: every workflow `gh` call gets its repo from
+  `GH_REPO: ${{ github.repository }}` (or `-R`); never assume checkout.
+- 2026-10-07 · `gh pr checks --json` has no `conclusion` field (only
+  `name`, `state`, ...). Cause: assumed GitHub API shape. Rule:
+  dry-run new `gh` fields against a real PR before shipping a workflow.
+- 2026-10-07 · Closed #33 and #40 kept `ready-for-agent` (stale tags).
+  Cause: sync was one-directional (open only). Rule: close-out strips
+  mirror labels; sync runs both directions.
+- 2026-10-07 · Local PowerShell breaks `gh --jq` with spaces/braces
+  and `python -c` quoting. Cause: shell quoting, not `gh`. Rule: keep
+  inline commands quote-simple; anything complex goes in a `.worktrees/`
+  script file run with `bash`.
+- 2026-10-07 · Full `skills update -g` exceeded the 120s tool timeout
+  with a partial update applied. Cause: too much work per call. Rule:
+  rerun with a 600s timeout or update per package; verify via
+  `updatedAt` in `.skill-lock.json`.
