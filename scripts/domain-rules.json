@@ -9,7 +9,8 @@
     "scripts/check-domain.mjs",
     "bin/gate.sh",
     "scripts/domain-rules.json",
-    "scripts/pages-files.txt"
+    "scripts/pages-files.txt",
+    "scripts/stage-pages.sh"
   ],
   "forbidden": [
     {
