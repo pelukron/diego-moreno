@@ -5,8 +5,20 @@ Diego Moreno Arellano’s public professional presence (this site). Hiring owns 
 ## Quality
 
 **Gate**:
-A deterministic check that can fail a pull request: i18n keys and domain lint on the public site files. No Biome, no LLM review, no npm dependencies.
-_Avoid_: agent-as-CI, pre-commit hooks as the only control, formatter-as-quality
+A deterministic check that can fail a pull request: i18n keys, and domain lint on the lint set. No Biome, no LLM review, no npm dependencies.
+_Avoid_: agent-as-CI, pre-commit hooks as the only control, formatter-as-quality, treating the lint set as the live site
+
+**Lint set**:
+The files domain lint scans for forbidden strings (`publicFiles`). Not the live site. The README is on the lint set and is not deployed.
+_Avoid_: using the lint set as the Pages list
+
+**Deploy-only**:
+A live-site file the lint set does not scan. `.nojekyll` is deploy-only. The roster is data in `scripts/domain-rules.json`, so a new file (a portrait, later) is a line there, not a checker edit.
+_Avoid_: scanning it for forbidden prose, adding it to the lint set so the two lists match, hardcoding the roster in the checker
+
+**Lint-only**:
+A lint-set file that is not on the live site. The README is lint-only. The roster is data in `scripts/domain-rules.json`.
+_Avoid_: deploying the README as a Page so the two lists match, hardcoding the roster in the checker
 
 **Claim**:
 A public fact a script cannot verify (C1 vs LinkedIn, L3 still live, portrait is a real photo). Claims fail in the world, not in Actions.

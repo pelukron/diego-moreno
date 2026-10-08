@@ -1,5 +1,9 @@
 {
   "publicFiles": ["index.html", "i18n.js", "README.md", "404.html", "styles.css"],
+  "_comment_deployOnly": "live-site paths the lint set does not scan",
+  "deployOnly": [".nojekyll"],
+  "_comment_lintOnly": "lint-set paths that are not deployed",
+  "lintOnly": ["README.md"],
   "requiredFiles": [
     "CONTEXT.md",
     "index.html",
