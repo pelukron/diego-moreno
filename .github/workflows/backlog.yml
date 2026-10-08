@@ -38,7 +38,10 @@ jobs:
               msg="$(printf '%s\n%s' "$msg" "$pending")"
             fi
             gh issue comment "$n" --body "$msg"
-            gh issue edit "$n" --remove-label ready-for-agent --remove-label ready-for-human --remove-label needs-info
+            state="$(gh issue view "$n" --json state --jq .state)"
+            if [ "$state" = "CLOSED" ]; then
+              gh issue edit "$n" --remove-label ready-for-agent --remove-label ready-for-human --remove-label needs-info
+            fi
             links="$links #$n"
           done
           gh pr comment "$pr" --body "Backlog close-out: merged \`$sha\` from \`$branch\`. Gate check (gate): $gate. Linked issues:$links"
