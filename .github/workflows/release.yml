@@ -33,19 +33,15 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  gate:
-    uses: ./.github/workflows/gate-reusable.yml
-    permissions:
-      contents: read
-    if: github.event_name != 'workflow_dispatch' || inputs.tag_name == ''
-
   release:
-    needs: gate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
+
+      - uses: ./.github/actions/gate
+        if: github.event_name != 'workflow_dispatch' || inputs.tag_name == ''
 
       - name: Skip bot commits
         id: gatebot

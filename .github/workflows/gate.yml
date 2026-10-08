@@ -14,9 +14,9 @@ concurrency:
 
 jobs:
   gate:
-    uses: ./.github/workflows/gate-reusable.yml
-    permissions:
-      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/actions/gate
 
   deploy:
     needs: gate
