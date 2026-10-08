@@ -1,0 +1,11 @@
+name: Gate
+description: Gate invocation module (Node 22 + the Gate entry). Needs a checkout first.
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v7
+      with:
+        node-version: "22"
+    - run: node scripts/gate.mjs
+      shell: bash
