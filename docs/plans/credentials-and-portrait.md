@@ -67,7 +67,7 @@ Work in this order in the future session. Stop if a step is false.
    Canonical claim is C1 (ADR-0011). LinkedIn still says professional working proficiency. Align LinkedIn *or* the landing is lying. This is a human step, not a code step.
 
 2. **L3 is still live**  
-   `4J095ZM` is the public noun and expires Oct 2026. Confirm renewal. If expired, the kicker cannot say L3.
+   `4J095ZM` is the public noun and expires 10 Oct 2026. If that date has passed and there is no renewal, the kicker cannot say L3.
 
 3. **Portrait**  
    One daylight photo, plain background, clothes you would wear in a US loop. Same (or a crop) on LinkedIn, GitHub, and this site. Light/color grade is fine. Changing face, age, or inventing an office is not. Asset: e.g. `portrait.webp`, ~200–400 px display width, alt = the name. Smaller than the H1. If there is no decent shot, skip the photo; a bad one is worse than none.
