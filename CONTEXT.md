@@ -35,7 +35,7 @@ _Avoid_: agent-as-memory, quality that exists only in a session log
 ## Language
 
 **Angular Expert (L3)**:
-The public noun. Angular Level 3 credential `4J095ZM`, assumed live (renewal in progress). Not a job title and not a mentoring brand.
+The public noun. Angular Level 3 credential `4J095ZM`, valid through 10 Oct 2026. Not a job title and not a mentoring brand.
 _Avoid_: Web Architect (as the noun), Mentor (as the noun), “Angular expert” as a job req
 
 **Senior Frontend**:
