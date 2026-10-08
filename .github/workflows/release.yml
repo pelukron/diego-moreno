@@ -1,0 +1,134 @@
+name: release
+
+# CalVer tag + GitHub Release on merge to master.
+# Same shape as pelukron/hermes-empleo (auto-tag.yml + release.yml):
+# git tag, gh release create, no third-party release action.
+# No CHANGELOG commit: the master Gate ruleset requires a pull request,
+# so this workflow must not push master. The version stays off the landing.
+# A tag push with GITHUB_TOKEN does not retrigger workflows, so the
+# Release is created in this same run. workflow_dispatch retries a tag
+# that already exists, or dry-runs the next tag.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (compute the next tag, do not push)"
+        required: false
+        default: true
+        type: boolean
+      tag_name:
+        description: "Existing v* tag to publish (retry). Leave empty to compute a new tag."
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        if: github.event_name != 'workflow_dispatch' || inputs.tag_name == ''
+        with:
+          node-version: "22"
+
+      - name: Gate
+        if: github.event_name != 'workflow_dispatch' || inputs.tag_name == ''
+        run: node scripts/gate.mjs
+
+      - name: Skip bot commits
+        id: gatebot
+        if: github.event_name == 'push'
+        run: |
+          if [ "${{ github.actor }}" = "github-actions[bot]" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if git log -1 --format=%B | grep -qi '\[skip ci\]'; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Compute CalVer tag
+        id: tag
+        if: >-
+          (github.event_name == 'push' && steps.gatebot.outputs.skip != 'true')
+          || (github.event_name == 'workflow_dispatch' && inputs.tag_name == '')
+        run: |
+          YM=$(date -u +%Y.%m)
+          COUNT=$(git tag -l "v${YM}.*" | wc -l | tr -d ' ')
+          N=$((COUNT + 1))
+          TAG="v${YM}.${N}"
+          while git rev-parse "$TAG" >/dev/null 2>&1; do
+            N=$((N + 1))
+            TAG="v${YM}.${N}"
+          done
+          if git tag --points-at HEAD -l 'v*' | grep -q .; then
+            echo "head_tagged=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "head_tagged=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Push tag
+        if: steps.tag.outputs.head_tagged == 'false' && steps.tag.outputs.tag != ''
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "DRY RUN: tag would be $TAG (no push)"
+            exit 0
+          fi
+          if [ "${{ github.ref }}" != "refs/heads/master" ]; then
+            echo "refusing tag push from ${{ github.ref }}"
+            exit 1
+          fi
+          git tag "$TAG"
+          git push origin "$TAG"
+
+      - name: Create GitHub Release
+        if: steps.tag.outputs.head_tagged == 'false' && steps.tag.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+            echo "DRY RUN: release $TAG not created"
+            exit 0
+          fi
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "release $TAG already exists"
+          else
+            gh release create "$TAG" --generate-notes
+          fi
+
+      - name: Retry existing tag
+        if: github.event_name == 'workflow_dispatch' && inputs.tag_name != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ inputs.tag_name }}"
+          case "$TAG" in
+            v*) ;;
+            *) echo "refusing non-v tag: $TAG"; exit 1 ;;
+          esac
+          git rev-parse "$TAG" >/dev/null 2>&1 || { echo "tag not found: $TAG"; exit 1; }
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "release $TAG already exists"
+          else
+            gh release create "$TAG" --generate-notes
+          fi
