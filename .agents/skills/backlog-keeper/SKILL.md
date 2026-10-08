@@ -48,7 +48,8 @@ On merge, the `backlog` workflow comments on each linked issue and on
 the PR: merged PR + branch + merge SHA, `gate` check conclusion, and
 the issue's unchecked acceptance boxes as human-verification pending.
 It then strips the mirror labels (`ready-for-agent`, `ready-for-human`,
-`needs-info`) so closed issues never carry a stale state tag.
+`needs-info`) only when that issue is closed, so a `Refs` link does not
+clear the role on an issue that stays open.
 It never checks acceptance boxes. If the trail is missing (no
 `Closes/Refs #n`), it stays silent.
 
@@ -75,3 +76,6 @@ the fix; a fix without a log entry will repeat.
   with a partial update applied. Cause: too much work per call. Rule:
   rerun with a 600s timeout or update per package; verify via
   `updatedAt` in `.skill-lock.json`.
+- 2026-10-08 · Open #16 lost `ready-for-human` after PR #58 (`Refs`, not
+  `Closes`). Cause: close-out stripped mirror labels on every linked
+  issue. Rule: strip only when the issue state is `CLOSED`.
