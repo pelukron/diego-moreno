@@ -57,31 +57,14 @@ jobs:
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
-      - name: Compute CalVer tag
-        id: tag
-        if: >-
-          (github.event_name == 'push' && steps.gatebot.outputs.skip != 'true')
-          || (github.event_name == 'workflow_dispatch' && inputs.tag_name == '')
-        run: |
-          YM=$(date -u +%Y.%m)
-          COUNT=$(git tag -l "v${YM}.*" | wc -l | tr -d ' ')
-          N=$((COUNT + 1))
-          TAG="v${YM}.${N}"
-          while git rev-parse "$TAG" >/dev/null 2>&1; do
-            N=$((N + 1))
-            TAG="v${YM}.${N}"
-          done
-          if git tag --points-at HEAD -l 'v*' | grep -q .; then
-            echo "head_tagged=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "head_tagged=false" >> "$GITHUB_OUTPUT"
-          fi
-          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+      - name: Decide tag plan
+        id: decide
+        run: node scripts/decide-release.mjs --event ${{ github.event_name }} --tag-name "${{ inputs.tag_name }}" --skip "${{ steps.gatebot.outputs.skip }}"
 
       - name: Push tag
-        if: steps.tag.outputs.head_tagged == 'false' && steps.tag.outputs.tag != ''
+        if: steps.decide.outputs.plan == 'tag' && steps.decide.outputs.tag != ''
         env:
-          TAG: ${{ steps.tag.outputs.tag }}
+          TAG: ${{ steps.decide.outputs.tag }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
             echo "DRY RUN: tag would be $TAG (no push)"
@@ -95,10 +78,10 @@ jobs:
           git push origin "$TAG"
 
       - name: Create GitHub Release
-        if: steps.tag.outputs.head_tagged == 'false' && steps.tag.outputs.tag != ''
+        if: steps.decide.outputs.plan == 'tag' && steps.decide.outputs.tag != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ steps.tag.outputs.tag }}
+          TAG: ${{ steps.decide.outputs.tag }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
             echo "DRY RUN: release $TAG not created"
@@ -111,11 +94,11 @@ jobs:
           fi
 
       - name: Retry existing tag
-        if: github.event_name == 'workflow_dispatch' && inputs.tag_name != ''
+        if: steps.decide.outputs.plan == 'retry' && steps.decide.outputs.tag != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.decide.outputs.tag }}
         run: |
-          TAG="${{ inputs.tag_name }}"
           case "$TAG" in
             v*) ;;
             *) echo "refusing non-v tag: $TAG"; exit 1 ;;
