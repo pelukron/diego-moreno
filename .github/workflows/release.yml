@@ -59,32 +59,7 @@ jobs:
 
       - name: Decide tag plan
         id: decide
-        run: |
-          plan=none
-          tag=""
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.tag_name }}" ]; then
-            plan=retry
-            tag="${{ inputs.tag_name }}"
-          elif [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            if [ "${{ steps.gatebot.outputs.skip }}" != "true" ]; then
-              YM=$(date -u +%Y.%m)
-              COUNT=$(git tag -l "v${YM}.*" | wc -l | tr -d ' ')
-              N=$((COUNT + 1))
-              TAG="v${YM}.${N}"
-              while git rev-parse "$TAG" >/dev/null 2>&1; do
-                N=$((N + 1))
-                TAG="v${YM}.${N}"
-              done
-              if git tag --points-at HEAD -l 'v*' | grep -q .; then
-                plan=none
-              else
-                plan=tag
-                tag="$TAG"
-              fi
-            fi
-          fi
-          echo "plan=$plan" >> "$GITHUB_OUTPUT"
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+        run: node scripts/decide-release.mjs --event ${{ github.event_name }} --tag-name "${{ inputs.tag_name }}" --skip "${{ steps.gatebot.outputs.skip }}"
 
       - name: Push tag
         if: steps.decide.outputs.plan == 'tag' && steps.decide.outputs.tag != ''
