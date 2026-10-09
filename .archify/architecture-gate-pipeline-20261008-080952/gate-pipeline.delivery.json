@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "a538108f-ab0a-44dc-9f14-7fa8e4ef1cf4",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "C:\\dev\\personal\\diego-moreno\\.archify\\architecture-gate-pipeline-20261008-080952\\candidate.json",
+  "output": "C:\\dev\\personal\\diego-moreno\\.archify\\architecture-gate-pipeline-20261008-080952\\gate-pipeline.html",
+  "specification": {
+    "sha256": "90c763dc09af244f30c709704cef608d17cb5065b18986668a3bb21d1e4304fe",
+    "bytes": 6238
+  },
+  "artifact": {
+    "sha256": "dcabef57a23684f1b93dda0823c65ac5414b6281ea5843452defc059bdbca212",
+    "bytes": 775809
+  }
+}

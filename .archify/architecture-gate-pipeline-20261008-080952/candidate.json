@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Gate pipeline: PR to GitHub Pages",
+    "output": ".archify/architecture-gate-pipeline-20261008-080952/gate-pipeline.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/pelukron/diego-moreno/",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "64b6ae70132359609d39b34fc973c30bf949cac9"
+    }
+  },
+  "components": [
+    { "id": "contributor", "type": "external", "label": "Contributor", "sublabel": "opens PR", "pos": [40, 300], "size": [120, 60], "sources": [{ "path": "AGENTS.md", "line": 9, "end_line": 11 }] },
+    { "id": "pr", "type": "external", "label": "Pull Request", "sublabel": "kind/<issue>-slug", "pos": [240, 300], "size": [130, 60], "sources": [{ "path": ".github/workflows/gate.yml", "line": 4 }] },
+    { "id": "gate_job", "type": "security", "label": "Gate job", "sublabel": "gate.yml: gate", "pos": [440, 300], "size": [140, 60], "sources": [{ "path": ".github/workflows/gate.yml", "line": 16, "end_line": 23 }] },
+    { "id": "check_i18n", "type": "backend", "label": "check-i18n.mjs", "sublabel": "HTML + dict parity", "pos": [435, 140], "size": [150, 62], "sources": [{ "path": "scripts/check-i18n.mjs", "line": 1, "end_line": 8 }] },
+    { "id": "check_domain", "type": "backend", "label": "check-domain.mjs", "sublabel": "domain + roster lint", "pos": [435, 460], "size": [150, 62], "sources": [{ "path": "scripts/check-domain.mjs", "line": 1, "end_line": 7 }] },
+    { "id": "site_files", "type": "frontend", "label": "Site sources", "sublabel": "index.html + i18n.js", "pos": [435, 20], "size": [150, 60], "sources": [{ "path": "index.html", "line": 25, "end_line": 27 }, { "path": "i18n.js", "line": 4, "end_line": 6 }] },
+    { "id": "domain_rules", "type": "database", "label": "domain-rules.json", "sublabel": "policy + roster data", "pos": [430, 620], "size": [160, 62], "sources": [{ "path": "scripts/domain-rules.json", "line": 1, "end_line": 6 }] },
+    { "id": "deploy_job", "type": "cloud", "label": "Deploy job", "sublabel": "gate.yml: deploy", "pos": [680, 300], "size": [150, 60], "sources": [{ "path": ".github/workflows/gate.yml", "line": 25, "end_line": 31 }] },
+    { "id": "stage_script", "type": "backend", "label": "stage-pages.sh", "sublabel": "copies roster to _site", "pos": [680, 150], "size": [150, 62], "sources": [{ "path": "scripts/stage-pages.sh", "line": 4, "end_line": 12 }] },
+    { "id": "pages_list", "type": "database", "label": "pages-files.txt", "sublabel": "5 live-site paths", "pos": [680, 30], "size": [150, 60], "sources": [{ "path": "scripts/pages-files.txt", "line": 1, "end_line": 5 }] },
+    { "id": "pages", "type": "cloud", "label": "GitHub Pages", "sublabel": "live site", "pos": [920, 300], "size": [150, 60], "sources": [{ "path": ".github/workflows/gate.yml", "line": 38, "end_line": 45 }] },
+    { "id": "release_job", "type": "backend", "label": "release.yml", "sublabel": "CalVer tag + notes", "pos": [920, 460], "size": [150, 62], "sources": [{ "path": ".github/workflows/release.yml", "line": 48, "end_line": 50 }] },
+    { "id": "backlog_bot", "type": "backend", "label": "backlog close-out", "sublabel": "comments + labels", "pos": [230, 140], "size": [150, 62], "sources": [{ "path": ".github/workflows/backlog.yml", "line": 21, "end_line": 29 }] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "GitHub Actions: gate.yml", "wraps": ["gate_job", "check_i18n", "check_domain", "deploy_job", "stage_script"] },
+    { "kind": "region", "label": "Pages live-site roster", "wraps": ["pages_list", "pages"], "pad": 8 },
+    { "kind": "security-group", "label": "deploy gets pages:write", "wraps": ["deploy_job"] }
+  ],
+  "connections": [
+    { "id": "opens-pr", "from": "contributor", "to": "pr", "label": "opens", "variant": "emphasis" },
+    { "id": "triggers-gate", "from": "pr", "to": "gate_job", "label": "triggers", "variant": "emphasis" },
+    { "id": "gate-ok", "from": "gate_job", "to": "deploy_job", "label": "gate ok", "variant": "emphasis", "fromSide": "right", "toSide": "left" },
+    { "id": "spawn-i18n", "from": "gate_job", "to": "check_i18n", "label": "spawns", "fromSide": "top", "toSide": "bottom" },
+    { "id": "spawn-domain", "from": "gate_job", "to": "check_domain", "label": "spawns", "fromSide": "bottom", "toSide": "top" },
+    { "id": "i18n-reads-site", "from": "check_i18n", "to": "site_files", "label": "reads", "fromSide": "top", "toSide": "bottom" },
+    { "id": "domain-reads-rules", "from": "check_domain", "to": "domain_rules", "label": "reads", "fromSide": "bottom", "toSide": "top" },
+    { "id": "deploy-runs-stage", "from": "deploy_job", "to": "stage_script", "label": "runs", "fromSide": "top", "toSide": "bottom" },
+    { "id": "stage-reads-list", "from": "stage_script", "to": "pages_list", "label": "reads", "fromSide": "top", "toSide": "bottom" },
+    { "id": "stage-to-pages", "from": "stage_script", "to": "pages", "label": "stages _site", "fromSide": "right", "toSide": "top" },
+    { "id": "deploy-publishes", "from": "deploy_job", "to": "pages", "label": "publishes", "fromSide": "right", "toSide": "left" },
+    { "id": "merge-releases", "from": "pages", "to": "release_job", "label": "on merge", "fromSide": "bottom", "toSide": "top" },
+    { "id": "merge-closeout", "from": "pr", "to": "backlog_bot", "label": "close-out", "fromSide": "top", "toSide": "bottom" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Gate", "items": ["gate.mjs runs check-i18n.mjs then check-domain.mjs", "i18n: HTML keys present in es and en dicts", "check-i18n also reads cvBodyPrefixes from domain-rules.json", "domain: 5 lint files, forbidden strings, section order"] },
+    { "dot": "emerald", "title": "Deploy", "items": ["stage-pages.sh copies the pages-files.txt roster to _site", "check-domain cross-checks that roster against domain-rules rosters", "deploy needs gate and runs on push to master only", "release.yml re-runs gate, then pushes a CalVer tag"] },
+    { "dot": "rose", "title": "Human claims", "items": ["C1, live L3, real portrait stay human, never gate checks", "backlog bot comments verification, never checks boxes"] }
+  ]
+}
