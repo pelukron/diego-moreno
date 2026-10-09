@@ -57,31 +57,39 @@ jobs:
           fi
           echo "skip=false" >> "$GITHUB_OUTPUT"
 
-      - name: Compute CalVer tag
-        id: tag
-        if: >-
-          (github.event_name == 'push' && steps.gatebot.outputs.skip != 'true')
-          || (github.event_name == 'workflow_dispatch' && inputs.tag_name == '')
+      - name: Decide tag plan
+        id: decide
         run: |
-          YM=$(date -u +%Y.%m)
-          COUNT=$(git tag -l "v${YM}.*" | wc -l | tr -d ' ')
-          N=$((COUNT + 1))
-          TAG="v${YM}.${N}"
-          while git rev-parse "$TAG" >/dev/null 2>&1; do
-            N=$((N + 1))
-            TAG="v${YM}.${N}"
-          done
-          if git tag --points-at HEAD -l 'v*' | grep -q .; then
-            echo "head_tagged=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "head_tagged=false" >> "$GITHUB_OUTPUT"
+          plan=none
+          tag=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ inputs.tag_name }}" ]; then
+            plan=retry
+            tag="${{ inputs.tag_name }}"
+          elif [ "${{ github.event_name }}" = "push" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ steps.gatebot.outputs.skip }}" != "true" ]; then
+              YM=$(date -u +%Y.%m)
+              COUNT=$(git tag -l "v${YM}.*" | wc -l | tr -d ' ')
+              N=$((COUNT + 1))
+              TAG="v${YM}.${N}"
+              while git rev-parse "$TAG" >/dev/null 2>&1; do
+                N=$((N + 1))
+                TAG="v${YM}.${N}"
+              done
+              if git tag --points-at HEAD -l 'v*' | grep -q .; then
+                plan=none
+              else
+                plan=tag
+                tag="$TAG"
+              fi
+            fi
           fi
-          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "plan=$plan" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
 
       - name: Push tag
-        if: steps.tag.outputs.head_tagged == 'false' && steps.tag.outputs.tag != ''
+        if: steps.decide.outputs.plan == 'tag' && steps.decide.outputs.tag != ''
         env:
-          TAG: ${{ steps.tag.outputs.tag }}
+          TAG: ${{ steps.decide.outputs.tag }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
             echo "DRY RUN: tag would be $TAG (no push)"
@@ -95,10 +103,10 @@ jobs:
           git push origin "$TAG"
 
       - name: Create GitHub Release
-        if: steps.tag.outputs.head_tagged == 'false' && steps.tag.outputs.tag != ''
+        if: steps.decide.outputs.plan == 'tag' && steps.decide.outputs.tag != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ steps.tag.outputs.tag }}
+          TAG: ${{ steps.decide.outputs.tag }}
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
             echo "DRY RUN: release $TAG not created"
@@ -111,11 +119,11 @@ jobs:
           fi
 
       - name: Retry existing tag
-        if: github.event_name == 'workflow_dispatch' && inputs.tag_name != ''
+        if: steps.decide.outputs.plan == 'retry' && steps.decide.outputs.tag != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.decide.outputs.tag }}
         run: |
-          TAG="${{ inputs.tag_name }}"
           case "$TAG" in
             v*) ;;
             *) echo "refusing non-v tag: $TAG"; exit 1 ;;
