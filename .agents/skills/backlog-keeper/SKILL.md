@@ -40,7 +40,7 @@ comment (e.g. why a blanket rule is wrong), never silently.
 
 - Branch `kind/<issue>-slug` from current `master` (`ci/`, `docs/`, `fix/`). Never push `master`.
 - PR title ends with `(#n)`. Body: what changed + how it was verified + `Closes #n` (or `Refs #n` when the issue must stay open).
-- The `gate` check must pass. Claims (C1, live L3, real portrait) stay human.
+- The `gate` check must pass. Claims (C1, credential validity, real portrait) stay human.
 
 ## Close-out (what the bot writes)
 

@@ -4,7 +4,7 @@ Read `CONTEXT.md` before changing public copy, domain terms, or Gate rules.
 
 ## Gate
 
-Quality is `node scripts/gate.mjs` (i18n + domain lint). A new forbidden string or required public fact goes in `scripts/domain-rules.json`. A new live-site file goes in `scripts/pages-files.txt`. Claims (C1, live L3, real portrait) stay human.
+Quality is `node scripts/gate.mjs` (i18n + domain lint). A new forbidden string or required public fact goes in `scripts/domain-rules.json`. A new live-site file goes in `scripts/pages-files.txt`. Claims (C1, credential validity, real portrait) stay human.
 
 ## Ship
 

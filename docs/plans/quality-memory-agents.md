@@ -16,10 +16,10 @@
 ## Do later
 
 4. **Issue #3** — `feat/3-credentials-and-portrait`  
-   Follow `docs/plans/credentials-and-portrait.md`. Human steps first (LinkedIn C1, live L3, real photo).
+   Follow `docs/plans/credentials-and-portrait.md`. Human steps first (LinkedIn C1, credential validity, real photo).
 
 ## Do not
 
-Standing quality agent, Grok Bot on the page, graphify, Husky-as-source-of-truth, formatter-as-quality, public semver on the landing. **Claim** (C1, L3 still live, real portrait) stays human; the Gate does not certify the CV is true.
+Standing quality agent, Grok Bot on the page, graphify, Husky-as-source-of-truth, formatter-as-quality, public semver on the landing. **Claim** (C1, credential validity, real portrait) stays human; the Gate does not certify the CV is true.
 
 If the live HTML must be proven to match a merge SHA (Pages debug, not marketing), stamp `$GITHUB_SHA` in the deploy job. Until that pain exists, skip.
