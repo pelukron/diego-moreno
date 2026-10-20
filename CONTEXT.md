@@ -1,6 +1,6 @@
 # Public presence
 
-Diego Moreno Arellano’s public professional presence (this site). Hiring owns the URL. Angular Senior Track is a real product on the same site, secondary. The public noun is Angular Expert (L3). The target employment role is Senior Frontend. Default public language is English. Implementation quality is a Gate on the pull request, not an agent.
+Diego Moreno Arellano’s public professional presence (this site). Hiring owns the URL. Angular Senior Track is a real product on the same site, secondary. The public noun is Senior Frontend · Angular. The target employment role is Senior Frontend. Default public language is English. Implementation quality is a Gate on the pull request, not an agent.
 
 ## Quality
 
@@ -21,7 +21,7 @@ A lint-set file that is not on the live site. The README is lint-only. The roste
 _Avoid_: deploying the README as a Page so the two lists match, hardcoding the roster in the checker
 
 **Claim**:
-A public fact a script cannot verify (C1 vs LinkedIn, L3 still live, portrait is a real photo). Claims fail in the world, not in Actions.
+A public fact a script cannot verify (C1 vs LinkedIn, credential validity, portrait is a real photo). Claims fail in the world, not in Actions.
 _Avoid_: putting Claims in the Gate, “the pipeline says the CV is true”
 
 **Pipe**:
@@ -34,12 +34,12 @@ _Avoid_: agent-as-memory, quality that exists only in a session log
 
 ## Language
 
-**Angular Expert (L3)**:
-The public noun. Angular Level 3 credential `4J095ZM`, valid through 10 Oct 2026. Not a job title and not a mentoring brand.
-_Avoid_: Web Architect (as the noun), Mentor (as the noun), “Angular expert” as a job req
+**Senior Frontend · Angular**:
+The public noun. Senior Angular platform work, without a current credential claim. The L3 credential `4J095ZM` expired on 10 Oct 2026 and was not renewed; it stays only as a clearly labeled historical credential, never as a live claim. Not a job title and not a mentoring brand.
+_Avoid_: Angular Expert (L3), Web Architect (as the noun), Mentor (as the noun), “Angular expert” as a job req
 
 **Senior Frontend**:
-The target employment role this URL seeks. Frontend Lead and Web Architect count as hiring wins. They are not the public noun.
+The target employment role this URL seeks. Frontend Lead and Web Architect count as hiring wins. The public noun is Senior Frontend · Angular.
 _Avoid_: Angular Expert as a job title, fractional expert (that is the Track)
 
 **Hiring**:
@@ -67,8 +67,12 @@ The canonical English claim of this presence. LinkedIn must match; it does not t
 _Avoid_: professional working proficiency as the public claim, dropping CEFR while leaving C1 on the landing
 
 **Credential**:
-A named certification with an id and a verify path (issuer URL, or shown in interview). This repo does not host certificate files until that decision is reopened.
-_Avoid_: PDF dump in GitHub Pages, unverifiable named certs
+A named certification with an id and a verify path (issuer URL, or shown in interview). A current credential may be used as evidence; a historical credential is kept only with an explicit expired label. This repo does not host certificate files until that decision is reopened.
+_Avoid_: PDF dump in GitHub Pages, unverifiable named certs, presenting an expired credential as current
+
+**Historical credential**:
+A credential kept on the public record after it expires: issuer, id, dates, and an explicit expired label. It documents history; it is not a current claim and cannot be the public noun.
+_Avoid_: live credential, hiding the expiry, dropping the record
 
 **Diagnostic**:
 The only paid entry to the Track. Never skipped. Offered only when a mentee slot is free or about to free. A 75-minute live review that produces a one-pager and a fit decision. Prepaid; refundable until 24 hours before the session. Buying a Diagnostic does not occupy a mentee slot.
