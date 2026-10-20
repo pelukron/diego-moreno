@@ -2,15 +2,14 @@
 
 🧭 Map: [🚀 What I ship](#-what-i-ship) · [🧰 Stack](#-stack) · [📦 Selected public work](#-selected-public-work) · [🏅 Certifications](#-certifications)
 
-**Angular Expert (Level 3) · Senior Frontend**  
+**Senior Frontend · Angular**  
 TypeScript-first SPAs: Signals, Nx, micro-frontends, Node 20+.  
 React / Next in active use. English C1.
 
 Monterrey, Mexico · Available — remote LATAM / US nearshore · hybrid MTY ok
 
 [Landing + CV](https://pelukron.github.io/diego-moreno/) ·
-[LinkedIn](https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/) ·
-[Angular L3 · 4J095ZM](https://www.angulartraining.com/certification/check.html)
+[LinkedIn](https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/)
 
 Site is static HTML on GitHub Pages (`master` root). Default language is English. Copy lives in `i18n.js` (chrome bilingual; CV body stays English). Domain language: `CONTEXT.md`.
 
@@ -36,7 +35,7 @@ Target roles: **Senior Frontend / Frontend Lead / Web Architect / UI platform**.
 
 | Tier | What I claim | Evidence |
 |---|---|---|
-| **T0 — identity** | Angular expert / lead | L3 cert, Nx + MFE + Signals in production programs |
+| **T0 — identity** | Angular platform / lead | Nx + MFE + Signals in production programs |
 | **T1 — active** | React / Next + TypeScript | [`react-stack-roadmap`](https://github.com/pelukron/react-stack-roadmap) (app-shell + MFE) |
 | **Architecture** | Event-driven patterns, memory bank, docs | [`eda-starter`](https://github.com/pelukron/eda-starter) · [`ngapp`](https://github.com/pelukron/ngapp) |
 
@@ -67,7 +66,6 @@ Enterprise client work (Globant 2021–2026, Accenture ~2018–2021) stays unnam
 
 ## 🏅 Certifications
 
-- **Angular Level 3 — Expert Developer** · Angular Training · `4J095ZM` · Oct 2023–Oct 2026  
 - **AI Fluency: Framework and Foundations** · Anthropic Education · 2026
 
 ---

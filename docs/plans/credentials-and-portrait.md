@@ -1,10 +1,10 @@
 # Next evolution: credentials and portrait
 
-**Status:** parked on human steps — LinkedIn English still says professional working proficiency (checked 2026-09-07). Do not open the landing PR until sequence step 1 is true.  
+**Status:** L3 expired 2026-10-10 and was removed from the landing/README on 2026-10-20 (#16). C1 stays as a claim; LinkedIn English still says professional working proficiency (checked 2026-09-07), so do not add or strengthen C1 copy until LinkedIn matches. Portrait and new credentials stay parked.  
 **Ship vehicle:** branch `feat/3-credentials-and-portrait` from current `master` → pull request → merge. Never push `master`.  
 **Domain:** `CONTEXT.md`. Do not invent employers, clients, salaries, or CEFR levels. Issue: #3.
 
-Hiring owns the URL. Anything added here must help a stranger believe **Angular Expert (L3)** and hire **Senior Frontend**. If it only looks busy, it stays off the landing.
+Hiring owns the URL. Anything added here must help a stranger believe **Senior Frontend · Angular** and hire **Senior Frontend**. If it only looks busy, it stays off the landing.
 
 ## Out of scope for that PR
 
@@ -32,7 +32,7 @@ Three layers. Do not mix.
 |---|---|---|
 | Landing | `index.html` Certifications (already exists) | One `<li>`: name · issuer · id · dates · Verify link |
 | GitHub profile | `README.md` | The same short list (visible on github.com, **not** on Pages) |
-| Gate | `scripts/domain-rules.json` → `indexHtml.mustContain` | Facts a PR must not drop (today: `4J095ZM`, L3 verify URL, LinkedIn) |
+| Gate | `scripts/domain-rules.json` → `indexHtml.mustContain` | Facts a PR must not drop (today: LinkedIn) |
 
 No `certs.md`, no logo wall, no new shop section. `CONTEXT.md` names the concept Credential; it is not the catalogue. A portrait, if any, is `portrait.webp` plus a line in `scripts/pages-files.txt`.
 
@@ -51,7 +51,7 @@ Verify:     (URL a stranger can open and confirm)
 
 That becomes one HTML row. **C1** is a claim until there is an issuer + id (IELTS / TOEFL / Cambridge). **AI Fluency** is already on the landing without a verify URL — add the issuer URL or it is not a Credential.
 
-Public and safe: credential id + verify URL (L3 `4J095ZM` is already on LinkedIn and the landing). Not safe: PDF/scan with PII, internal Globant/Accenture files, anything you do not want a stranger to keep.
+Public and safe: credential id + verify URL for a live credential. Not safe: PDF/scan with PII, internal Globant/Accenture files, anything you do not want a stranger to keep.
 
 ## Discovery (search engines)
 
@@ -66,8 +66,8 @@ Work in this order in the future session. Stop if a step is false.
 1. **LinkedIn English matches C1**  
    Canonical claim is C1 (ADR-0011). LinkedIn still says professional working proficiency. Align LinkedIn *or* the landing is lying. This is a human step, not a code step.
 
-2. **L3 is still live**  
-   `4J095ZM` is the public noun and expires 10 Oct 2026. If that date has passed and there is no renewal, the kicker cannot say L3.
+2. **Any credential shown is still live**  
+   The L3 `4J095ZM` expired 10 Oct 2026 and is no longer public. A future credential follows the same rule: if it expires without renewal, it comes off the kicker, CV, README, and Gate.
 
 3. **Portrait**  
    One daylight photo, plain background, clothes you would wear in a US loop. Same (or a crop) on LinkedIn, GitHub, and this site. Light/color grade is fine. Changing face, age, or inventing an office is not. Asset: e.g. `portrait.webp`, ~200–400 px display width, alt = the name. Smaller than the H1. If there is no decent shot, skip the photo; a bad one is worse than none.
@@ -93,7 +93,7 @@ Work in this order in the future session. Stop if a step is false.
 The PR is done when:
 
 - LinkedIn English matches the landing (C1) *or* the landing no longer claims C1
-- L3 line is true on the day of merge (live or removed)
+- Every credential line is true on the day of merge (live or removed)
 - At most one portrait, consistent with LinkedIn/GitHub, or none
 - Every new credential row has a verify path
 - `node scripts/check-i18n.mjs` passes

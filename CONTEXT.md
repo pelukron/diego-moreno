@@ -1,6 +1,6 @@
 # Public presence
 
-Diego Moreno Arellano’s public professional presence (this site). Hiring owns the URL. Angular Senior Track is a real product on the same site, secondary. The public noun is Angular Expert (L3). The target employment role is Senior Frontend. Default public language is English. Implementation quality is a Gate on the pull request, not an agent.
+Diego Moreno Arellano’s public professional presence (this site). Hiring owns the URL. Angular Senior Track is a real product on the same site, secondary. The public noun is Senior Frontend · Angular. The target employment role is Senior Frontend. Default public language is English. Implementation quality is a Gate on the pull request, not an agent.
 
 ## Quality
 
@@ -21,7 +21,7 @@ A lint-set file that is not on the live site. The README is lint-only. The roste
 _Avoid_: deploying the README as a Page so the two lists match, hardcoding the roster in the checker
 
 **Claim**:
-A public fact a script cannot verify (C1 vs LinkedIn, L3 still live, portrait is a real photo). Claims fail in the world, not in Actions.
+A public fact a script cannot verify (C1 vs LinkedIn, credential validity, portrait is a real photo). Claims fail in the world, not in Actions.
 _Avoid_: putting Claims in the Gate, “the pipeline says the CV is true”
 
 **Pipe**:
@@ -34,12 +34,12 @@ _Avoid_: agent-as-memory, quality that exists only in a session log
 
 ## Language
 
-**Angular Expert (L3)**:
-The public noun. Angular Level 3 credential `4J095ZM`, valid through 10 Oct 2026. Not a job title and not a mentoring brand.
-_Avoid_: Web Architect (as the noun), Mentor (as the noun), “Angular expert” as a job req
+**Senior Frontend · Angular**:
+The public noun. Senior Angular platform work, without a credential claim. The L3 credential `4J095ZM` expired on 10 Oct 2026 and was not renewed, so it is no longer public. Not a job title and not a mentoring brand.
+_Avoid_: Angular Expert (L3), Web Architect (as the noun), Mentor (as the noun), “Angular expert” as a job req
 
 **Senior Frontend**:
-The target employment role this URL seeks. Frontend Lead and Web Architect count as hiring wins. They are not the public noun.
+The target employment role this URL seeks. Frontend Lead and Web Architect count as hiring wins. The public noun is Senior Frontend · Angular.
 _Avoid_: Angular Expert as a job title, fractional expert (that is the Track)
 
 **Hiring**:
