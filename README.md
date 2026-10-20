@@ -68,6 +68,10 @@ Enterprise client work (Globant 2021–2026, Accenture ~2018–2021) stays unnam
 
 - **AI Fluency: Framework and Foundations** · Anthropic Education · 2026
 
+### Historical credentials
+
+- **Angular Level 3 — Expert Developer** · Angular Training · `4J095ZM` · Oct 2023–Oct 2026 · Expired 10 Oct 2026 · [Verify](https://www.angulartraining.com/certification/check.html)
+
 ---
 
 <p align="left">

@@ -27,13 +27,22 @@
       "pattern": "Interview\\s*/\\s*Lead",
       "flags": "i",
       "message": "Interview/Lead is not a product on this URL"
+    },
+    {
+      "id": "expired-l3-noun",
+      "pattern": "Angular Expert( L3| \\(Level 3\\))",
+      "message": "expired L3 is historical only; use Senior Frontend · Angular as the public noun"
     }
   ],
   "indexHtml": {
     "sectionOrder": ["cv", "mentoria"],
     "lang": "en",
+    "_comment_mustContain": "LinkedIn is the live required fact. The L3 id, verify URL, and expired label preserve the historical record, not a current claim.",
     "mustContain": [
-      "https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/"
+      "https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/",
+      "4J095ZM",
+      "Expired 10 Oct 2026",
+      "https://www.angulartraining.com/certification/check.html"
     ]
   },
   "_comment_cvBodyPrefixes": "family match only: exact, or trailing-dot prefix, or digit next (g1 not goals)",

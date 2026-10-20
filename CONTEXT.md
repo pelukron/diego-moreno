@@ -35,7 +35,7 @@ _Avoid_: agent-as-memory, quality that exists only in a session log
 ## Language
 
 **Senior Frontend · Angular**:
-The public noun. Senior Angular platform work, without a credential claim. The L3 credential `4J095ZM` expired on 10 Oct 2026 and was not renewed, so it is no longer public. Not a job title and not a mentoring brand.
+The public noun. Senior Angular platform work, without a current credential claim. The L3 credential `4J095ZM` expired on 10 Oct 2026 and was not renewed; it stays only as a clearly labeled historical credential, never as a live claim. Not a job title and not a mentoring brand.
 _Avoid_: Angular Expert (L3), Web Architect (as the noun), Mentor (as the noun), “Angular expert” as a job req
 
 **Senior Frontend**:
@@ -67,8 +67,12 @@ The canonical English claim of this presence. LinkedIn must match; it does not t
 _Avoid_: professional working proficiency as the public claim, dropping CEFR while leaving C1 on the landing
 
 **Credential**:
-A named certification with an id and a verify path (issuer URL, or shown in interview). This repo does not host certificate files until that decision is reopened.
-_Avoid_: PDF dump in GitHub Pages, unverifiable named certs
+A named certification with an id and a verify path (issuer URL, or shown in interview). A current credential may be used as evidence; a historical credential is kept only with an explicit expired label. This repo does not host certificate files until that decision is reopened.
+_Avoid_: PDF dump in GitHub Pages, unverifiable named certs, presenting an expired credential as current
+
+**Historical credential**:
+A credential kept on the public record after it expires: issuer, id, dates, and an explicit expired label. It documents history; it is not a current claim and cannot be the public noun.
+_Avoid_: live credential, hiding the expiry, dropping the record
 
 **Diagnostic**:
 The only paid entry to the Track. Never skipped. Offered only when a mentee slot is free or about to free. A 75-minute live review that produces a one-pager and a fit decision. Prepaid; refundable until 24 hours before the session. Buying a Diagnostic does not occupy a mentee slot.
