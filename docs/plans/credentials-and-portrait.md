@@ -32,7 +32,7 @@ Three layers. Do not mix.
 |---|---|---|
 | Landing | `index.html` Certifications (already exists) | One `<li>`: name · issuer · id · dates · status · Verify link |
 | GitHub profile | `README.md` | The same short list, with status (visible on github.com, **not** on Pages) |
-| Gate | `scripts/domain-rules.json` → `indexHtml.mustContain` | Facts a PR must not drop (today: LinkedIn; historical L3 id, verify URL, and expired label) |
+| Gate | `scripts/domain-rules.json` → `requiredFacts` | Facts a PR must not drop, with artifact and region (today: LinkedIn anywhere; historical L3 id, verify URL, and expired label under Historical credentials) |
 
 No `certs.md`, no logo wall, no new shop section. `CONTEXT.md` names the concept Credential; it is not the catalogue. A portrait, if any, is `portrait.webp` plus a line in `scripts/pages-files.txt`.
 

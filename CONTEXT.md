@@ -24,6 +24,10 @@ _Avoid_: deploying the README as a Page so the two lists match, hardcoding the r
 A public fact a script cannot verify (C1 vs LinkedIn, credential validity, portrait is a real photo). Claims fail in the world, not in Actions.
 _Avoid_: putting Claims in the Gate, “the pipeline says the CV is true”
 
+**Required public fact**:
+A public fact the Gate can verify for presence and placement in a named artifact and region (for example, the historical L3 id under Historical credentials). It is not a Claim: a pass does not prove the credential is valid, the portrait is real, or C1 is true.
+_Avoid_: treating a passing Gate as truth, putting Claims in `requiredFacts`, accepting a fact anywhere in the file as placed
+
 **Pipe**:
 GitHub Actions: job `gate` (`node scripts/gate.mjs`) on pull requests and on `master`; job `deploy` runs only after `gate` on push to `master`. The live site is the list in `scripts/pages-files.txt`, not the whole repo. Branch names include the GitHub issue number (`kind/<issue>-slug`). Requiring the `gate` check to merge is a human Settings step.
 _Avoid_: Husky as the source of truth, pushing to `master`, branches without a ticket number, Pages deploy from branch in parallel with Gate
