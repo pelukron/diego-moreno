@@ -36,14 +36,56 @@
   ],
   "indexHtml": {
     "sectionOrder": ["cv", "mentoria"],
-    "lang": "en",
-    "_comment_mustContain": "LinkedIn is the live required fact. The L3 id, verify URL, and expired label preserve the historical record, not a current claim.",
-    "mustContain": [
-      "https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/",
-      "4J095ZM",
-      "Expired 10 Oct 2026",
-      "https://www.angulartraining.com/certification/check.html"
-    ]
+    "lang": "en"
+  },
+  "_comment_requiredFacts": "Presence and placement only. LinkedIn may stay anywhere; the L3 id, expired label, and verify URL stay under Historical credentials. C1, credential validity, and portrait stay Claims.",
+  "requiredFacts": [
+    {
+      "id": "linkedin",
+      "text": "https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/",
+      "placements": [
+        { "artifact": "index.html", "region": "any" },
+        { "artifact": "README.md", "region": "any" }
+      ]
+    },
+    {
+      "id": "l3-id",
+      "text": "4J095ZM",
+      "placements": [
+        { "artifact": "index.html", "region": "historical" },
+        { "artifact": "README.md", "region": "historical" }
+      ]
+    },
+    {
+      "id": "l3-expired",
+      "text": "Expired 10 Oct 2026",
+      "placements": [
+        { "artifact": "index.html", "region": "historical" },
+        { "artifact": "README.md", "region": "historical" }
+      ]
+    },
+    {
+      "id": "l3-verify",
+      "text": "https://www.angulartraining.com/certification/check.html",
+      "placements": [
+        { "artifact": "index.html", "region": "historical" },
+        { "artifact": "README.md", "region": "historical" }
+      ]
+    }
+  ],
+  "regions": {
+    "index.html": {
+      "historical": {
+        "start": "data-i18n=\"cv.certHistory\"",
+        "end": "data-i18n=\"cv.edu\""
+      }
+    },
+    "README.md": {
+      "historical": {
+        "start": "### Historical credentials",
+        "end": "\n---"
+      }
+    }
   },
   "_comment_cvBodyPrefixes": "family match only: exact, or trailing-dot prefix, or digit next (g1 not goals)",
   "cvBodyPrefixes": ["acc", "cv.intro", "cv.omit", "cv.p", "g", "ind."]
