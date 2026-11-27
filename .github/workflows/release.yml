@@ -46,8 +46,10 @@ jobs:
       - name: Skip bot commits
         id: gatebot
         if: github.event_name == 'push'
+        env:
+          ACTOR: ${{ github.actor }}
         run: |
-          if [ "${{ github.actor }}" = "github-actions[bot]" ]; then
+          if [ "$ACTOR" = "github-actions[bot]" ]; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
             exit 0
           fi
@@ -59,19 +61,26 @@ jobs:
 
       - name: Decide tag plan
         id: decide
-        run: node scripts/decide-release.mjs --event ${{ github.event_name }} --tag-name "${{ inputs.tag_name }}" --skip "${{ steps.gatebot.outputs.skip }}"
+        env:
+          EVENT: ${{ github.event_name }}
+          TAG_NAME: ${{ inputs.tag_name }}
+          SKIP: ${{ steps.gatebot.outputs.skip }}
+        run: node scripts/decide-release.mjs --event "$EVENT" --tag-name "$TAG_NAME" --skip "$SKIP"
 
       - name: Push tag
         if: steps.decide.outputs.plan == 'tag' && steps.decide.outputs.tag != ''
         env:
           TAG: ${{ steps.decide.outputs.tag }}
+          EVENT_NAME: ${{ github.event_name }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          REF: ${{ github.ref }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$DRY_RUN" = "true" ]; then
             echo "DRY RUN: tag would be $TAG (no push)"
             exit 0
           fi
-          if [ "${{ github.ref }}" != "refs/heads/master" ]; then
-            echo "refusing tag push from ${{ github.ref }}"
+          if [ "$REF" != "refs/heads/master" ]; then
+            echo "refusing tag push from $REF"
             exit 1
           fi
           git tag "$TAG"
@@ -82,8 +91,10 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.decide.outputs.tag }}
+          EVENT_NAME: ${{ github.event_name }}
+          DRY_RUN: ${{ inputs.dry_run }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.dry_run }}" = "true" ]; then
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$DRY_RUN" = "true" ]; then
             echo "DRY RUN: release $TAG not created"
             exit 0
           fi

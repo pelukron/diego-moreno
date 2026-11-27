@@ -18,10 +18,13 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_BRANCH: ${{ github.event.pull_request.head.ref }}
+          MERGE_SHA: ${{ github.event.pull_request.merge_commit_sha }}
         run: |
-          pr="${{ github.event.pull_request.number }}"
-          branch="${{ github.event.pull_request.head.ref }}"
-          sha="${{ github.event.pull_request.merge_commit_sha }}"
+          pr="$PR_NUMBER"
+          branch="$PR_BRANCH"
+          sha="$MERGE_SHA"
           body="$(gh pr view "$pr" --json body --jq .body)"
           issues="$(printf '%s' "$body" | grep -oiE '(closes|fixes|refs?) #[0-9]+' | grep -oiE '#[0-9]+' | tr -d '#' | sort -u)"
           [ -z "$issues" ] && echo "no linked issues, staying silent" && exit 0

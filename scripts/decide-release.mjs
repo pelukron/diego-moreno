@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import { appendFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -6,6 +6,8 @@ import { fileURLToPath } from "node:url";
 // Decide the release plan behind one interface so release.yml stays thin.
 // Usage: node scripts/decide-release.mjs --event <push|workflow_dispatch> [--tag-name <v*>] [--skip <true|false>]
 // Emits plan (tag|retry|none) plus tag to $GITHUB_OUTPUT, or stdout locally.
+// The next tag is max(numeric suffix) + 1, not tag count + 1, so holes
+// (v2026.11.1, v2026.11.10) cannot make the version go backwards.
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -16,8 +18,8 @@ function arg(name) {
   return value.startsWith("-") ? "" : value;
 }
 
-function git(cmd) {
-  return execSync(`git ${cmd}`, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+function git(args) {
+  return execFileSync("git", args, { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
 }
 
 const event = arg("event");
@@ -33,21 +35,26 @@ if (event === "workflow_dispatch" && tagName !== "") {
 } else if (event === "push" || event === "workflow_dispatch") {
   if (skip !== "true") {
     const ym = new Date().toISOString().slice(0, 7).replace("-", ".");
-    const count = git(`tag -l "v${ym}.*"`)
+    const prefix = `v${ym}.`;
+    const highest = git(["tag", "-l", `${prefix}*`])
       .split("\n")
-      .filter(Boolean).length;
-    let n = count + 1;
-    let candidate = `v${ym}.${n}`;
+      .filter(Boolean)
+      .reduce((max, name) => {
+        const suffix = name.slice(prefix.length);
+        return /^\d+$/.test(suffix) ? Math.max(max, Number(suffix)) : max;
+      }, 0);
+    let n = highest + 1;
+    let candidate = `${prefix}${n}`;
     while (true) {
       try {
-        git(`rev-parse "${candidate}"`);
+        git(["rev-parse", "--verify", candidate]);
         n += 1;
-        candidate = `v${ym}.${n}`;
+        candidate = `${prefix}${n}`;
       } catch {
         break;
       }
     }
-    const headTagged = git("tag --points-at HEAD -l 'v*'") !== "";
+    const headTagged = git(["tag", "--points-at", "HEAD", "-l", "v*"]) !== "";
     if (!headTagged) {
       plan = "tag";
       tag = candidate;
