@@ -5,6 +5,8 @@
   "_comment_lintOnly": "lint-set paths that are not deployed",
   "lintOnly": ["README.md"],
   "requiredFiles": [
+    ".nvmrc",
+    ".github/actions/gate/action.yml",
     "CONTEXT.md",
     "index.html",
     "i18n.js",
