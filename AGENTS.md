@@ -6,6 +6,8 @@ Read `CONTEXT.md` before changing public copy, domain terms, or Gate rules.
 
 Quality is `node scripts/gate.mjs` (i18n + domain lint). A new forbidden string or required public fact goes in `scripts/domain-rules.json`; a required fact names its artifact and region. A new live-site file goes in `scripts/pages-files.txt`. Claims (C1, credential validity, real portrait) stay human.
 
+Repo tooling runs on the exact Node version in `.nvmrc` (currently `22.23.5`); CI reads it with `node-version-file`. Do not use a major-only `node-version`.
+
 ## Ship
 
 Branch `kind/<issue>-slug` from current `master`. Open a pull request. The `gate` check must pass. Plans live in `docs/plans/` — follow the one that matches the issue.

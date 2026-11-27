@@ -11,9 +11,9 @@ Monterrey, Mexico · Available — remote LATAM / US nearshore · hybrid MTY ok
 [Landing + CV](https://pelukron.github.io/diego-moreno/) ·
 [LinkedIn](https://www.linkedin.com/in/diego-moreno-arellano-2a36528a/)
 
-Site is static HTML on GitHub Pages (`master` root). Default language is English. Copy lives in `i18n.js` (chrome bilingual; CV body stays English). Domain language: `CONTEXT.md`.
+Site is static HTML deployed to GitHub Pages from the Actions artifact (`build_type: workflow`). Default language is English. Copy lives in `i18n.js` (chrome bilingual; CV body stays English). Domain language: `CONTEXT.md`.
 
-Gate (run before a PR): `node scripts/gate.mjs`. Forbidden public copy and required public facts live in `scripts/domain-rules.json`; each required fact names its artifact and region. Pages publishes only `scripts/pages-files.txt`. GitHub Actions: `gate` then `deploy` on `master`. Release tags come from one Decide step (`scripts/decide-release.mjs` emits `tag|retry|none`); push, create, and retry steps read the plan. Branch names include the issue number (`ci/8-pages-needs-gate`).
+Gate (run before a PR): `node scripts/gate.mjs`. The repo tooling runs on the exact Node version in `.nvmrc` (currently `22.23.5`); CI reads the same file with `node-version-file`, so do not pin a major-only version. Forbidden public copy and required public facts live in `scripts/domain-rules.json`; each required fact names its artifact and region. Pages publishes only `scripts/pages-files.txt`. GitHub Actions: `gate` then `deploy` on `master`. Release tags come from one Decide step (`scripts/decide-release.mjs` emits `tag|retry|none`); push, create, and retry steps read the plan. Branch names include the issue number (`kind/<issue>-slug`).
 
 ---
 

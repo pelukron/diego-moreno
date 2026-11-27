@@ -327,6 +327,23 @@ for (const rel of rules.requiredFiles) {
   if (!existsSync(join(root, rel))) errors.push(`missing required file: ${rel}`);
 }
 
+if (existsSync(join(root, ".nvmrc"))) {
+  const nvmrc = read(".nvmrc").trim();
+  if (!/^\d+\.\d+\.\d+$/.test(nvmrc)) {
+    errors.push(`.nvmrc: expected an exact version like 22.23.5, got ${JSON.stringify(nvmrc)}`);
+  }
+}
+
+if (existsSync(join(root, ".github/actions/gate/action.yml"))) {
+  const action = read(".github/actions/gate/action.yml");
+  if (!/node-version-file:\s*\.nvmrc/.test(action)) {
+    errors.push(".github/actions/gate/action.yml: must use node-version-file: .nvmrc");
+  }
+  if (/^\s*node-version:\s/m.test(action)) {
+    errors.push(".github/actions/gate/action.yml: node-version is not exact; use node-version-file: .nvmrc");
+  }
+}
+
 const pagesList = join(root, "scripts/pages-files.txt");
 const live = existsSync(pagesList) ? clean(read("scripts/pages-files.txt").split(/\r?\n/)) : [];
 if (!existsSync(pagesList)) errors.push("missing required file: scripts/pages-files.txt");
